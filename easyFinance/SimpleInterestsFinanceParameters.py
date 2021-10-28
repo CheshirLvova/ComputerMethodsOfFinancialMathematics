@@ -5,10 +5,11 @@ def get_n_by_SPd(s,p,d):
     n=(1-p/s)/d
     return n
 def get_t_by_SPi(s,p,i,k):
-    i=get_n_by_SPi(s,p,i)*k
-    return i
-def get_y_by_SPd(s,p,d,k):
-    i=get_n_by_SPd(s,p,d)*k
+    t=get_n_by_SPi(s,p,i)*k
+    return t
+def get_t_by_SPd(s,p,d,k):
+    t=get_n_by_SPd(s,p,d)*k
+    return t
 def get_i_by_SPn(s,p,n):
     i=(s/p-1)/n
     return i

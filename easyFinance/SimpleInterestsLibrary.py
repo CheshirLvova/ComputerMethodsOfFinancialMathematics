@@ -25,8 +25,9 @@ def single_time_payment(s,n,m):
 def discount_prise(s,i,t,k):
     P=s/(1+i*t/k)
     return P
-def discount(s,p):
-    D=s-p
+def discount(t,k,p,i):
+    n=t/k
+    D=n*p*i
     return D
 def bank_accounting_rate(s,p,t,k):
     d=(s-p)/(s*t/k)
