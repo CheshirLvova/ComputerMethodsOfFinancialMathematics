@@ -1,0 +1,2 @@
+# ComputerMethodsOfFinancialMathematics
+Комп'ютерні методи фінансової математики
