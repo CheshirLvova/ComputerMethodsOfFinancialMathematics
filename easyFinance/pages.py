@@ -1,5 +1,10 @@
 # підключення сторінок
 from window import *
+import SimpleInterestsLibrary as SIL
+import time
+import datetime
+import calendar
+
 def add_top_menu():
    windowTopMenu = Menu(root)
    root.config(menu=windowTopMenu)
@@ -12,20 +17,20 @@ def clear():
       pass
 def information():
     help_info = """Вас вітає фінансовий калькулятор easyFinance. 
-Дякуємо, що скористалися програмою!!!
+      Дякуємо, що скористалися програмою!!!
 
-З метою полегшення використання програми, пропонуємо Вам 
-детальніше ознайомитись з можливими функціями для перегляду та використання:
+      З метою полегшення використання програми, пропонуємо Вам 
+      детальніше ознайомитись з можливими функціями для перегляду та використання:
 
-1. На наступній, головній сторінці Ви матимете змогу обрати 
-   необхідний розділ для подальшої роботи.
+      1. На наступній, головній сторінці Ви матимете змогу обрати 
+         необхідний розділ для подальшої роботи.
 
-2. Ви завжди маєте змогу повернутись до цієї сторінки, 
-   натиснувши відповідну кнопку вгорі програми.
+      2. Ви завжди маєте змогу повернутись до цієї сторінки, 
+         натиснувши відповідну кнопку вгорі програми.
 
-3. Перейшовши на головну сторінку, Вам буде відображено 
-   меню та перелік існуючих розділів для роботи. 
-"""
+      3. Перейшовши на головну сторінку, Вам буде відображено 
+         меню та перелік існуючих розділів для роботи. 
+      """
     clear()
     frame = Frame(root, bg=white_color)
     frame.place(anchor="n", relx=.5)
@@ -43,7 +48,7 @@ def information():
     btntomain.pack()
 
 
-def template(nb):    # таби з розділами та переходами на кожну задачу
+def template(nb,fr=None):    # таби з розділами та переходами на кожну задачу
     # Add first tab
     tab1 = ttk.Frame(nb)
     tab2 = ttk.Frame(nb)
@@ -57,6 +62,7 @@ def template(nb):    # таби з розділами та переходами 
     nb.add(tab3, text='3.Визначення інших параметрів угод із відсотковими ставками')
     nb.add(tab4, text='4.Неперервні відсотки. Неперервне нарощення та дисконтування')
     nb.add(tab7, text='7.Планування погашення заборгованості')
+
 
     # Change the sizes of the columns equally
     tab1.columnconfigure(0, minsize=70)
@@ -160,14 +166,14 @@ def template(nb):    # таби з розділами та переходами 
     tab4.columnconfigure(16, minsize=920)
 
     # tab1
-    bt1 = Button(tab1, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt1 = Button(tab1, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=lambda:defaul_simple_rates(fr))
     bthint1 = Hovertip(bt1, 'умова')
     bt1.grid(row=0, column=0, padx=5, pady=5)
 
     separator0 = ttk.Separator(tab1, orient='vertical')
     separator0.grid(column=1, row=0, sticky='ns')
 
-    bt2 = Button(tab1, text='Формула 2', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt2 = Button(tab1, text='Формула 2', image=icon1, compound=TOP, borderwidth=0, command=lambda:changing_simple_rates(fr))
     bthint2 = Hovertip(bt2, 'умова')
     bt2.grid(row=0, column=2, padx=5, pady=5)
 
@@ -524,16 +530,132 @@ def template(nb):    # таби з розділами та переходами 
     lbl1 = Label(tab4, text="4.2. Змінна сила росту").grid(row=1, column=8, columnspan=7, padx=0, pady=1)
 
 
-
 def chapter_one_task_one_page():
     clear()
     frame = Frame(root)
-    frame.place(anchor='n',relx=0.5, rely=0, relheight=1, relwidth=1)
+    frame.place(anchor='nw')
     nb = ttk.Notebook(frame)
     nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
     # main_page
+    click_frame=Frame(frame)
+    click_frame.grid(row=1, column=0,padx=0)
+    lb=Label(click_frame,text="ttuutututut")
+    lb.pack()
+    template(nb,click_frame)
+def clear_frame(frame):
+   for x in frame.winfo_children():
+      x.destroy()
+    
+def defaul_simple_rates(frame):
+   clear_frame(frame)
+   frame.grid(row=1, column=0)
 
-    nb1 = ttk.Notebook(frame)
-    nb1.grid(row=1, column=0)
+   date_frame=Frame(frame)
+
+   first_date_frame=Frame(date_frame)
+   start_label=Label(first_date_frame,text="Початок")
+   start_label.pack()
+   first_day = Calendar(first_date_frame,locale="uk_UA")
+   first_day.pack()
+   first_date_frame.pack(side=LEFT)
+   
+   last_date_frame=Frame(date_frame)
+   end_label=Label(last_date_frame,text="Кінець")
+   end_label.pack()
+   last_day = Calendar(last_date_frame,locale="uk_UA")
+   last_day.pack()
+   last_date_frame.pack(side=LEFT)
+
+   date_frame.pack(side=LEFT)
+
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Відсоткова ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   cap_rate_label=Label(input_frame,text="Капітал: ")
+   cap_rate_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+   input_frame.pack(side=LEFT)
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
+      l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      k=365
+      t=int((l_day-f_day).days)
+      if(calendar.isleap(l_day.year)):
+         k=366
+      p=float(capital.get())
+      i=float(interest.get())
+      s= SIL.defaul_simple_rates(p,t,i,k)
+      res_var.set("Сума боргу: "+str(s))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def changing_simple_rates(frame):
+   clear_frame(frame)
+   frame.grid(row=1, column=0)
+
+   date_frame=Frame(frame)
+
+   first_date_frame=Frame(date_frame)
+   start_label=Label(first_date_frame,text="Початок")
+   start_label.pack()
+   first_day = Calendar(first_date_frame,locale="uk_UA")
+   first_day.pack()
+   first_date_frame.pack(side=LEFT)
+   
+   last_date_frame=Frame(date_frame)
+   end_label=Label(last_date_frame,text="Кінець")
+   end_label.pack()
+   last_day = Calendar(last_date_frame,locale="uk_UA")
+   last_day.pack()
+   last_date_frame.pack(side=LEFT)
+
+   date_frame.pack(side=LEFT)
+
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Відсоткова ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   cap_rate_label=Label(input_frame,text="Капітал: ")
+   cap_rate_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+   input_frame.pack(side=LEFT)
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
+      l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      k=365
+      t=int((l_day-f_day).days)
+      if(calendar.isleap(l_day.year)):
+         k=366
+      p=float(capital.get())
+      i=float(interest.get())
+      s= SIL.defaul_simple_rates(p,t,i,k)
+      res_var.set("Сума боргу: "+str(s))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
