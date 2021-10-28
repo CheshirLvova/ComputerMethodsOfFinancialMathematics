@@ -1,15 +1,22 @@
 # підключення сторінок
 from window import *
+from chapter2 import *
+
+
 def add_top_menu():
-   windowTopMenu = Menu(root)
-   root.config(menu=windowTopMenu)
-   windowTopMenu.add_command(label='Довідка',command=information)
-   windowTopMenu.add_command(label='Вихід',command=root.destroy) 
+    windowTopMenu = Menu(root)
+    root.config(menu=windowTopMenu)
+    windowTopMenu.add_command(label='Довідка', command=information)
+    windowTopMenu.add_command(label='Вихід', command=root.destroy)
+
+
 def clear():
-   try:
-      root.winfo_children()[1].destroy()
-   except:
-      pass
+    try:
+        root.winfo_children()[1].destroy()
+    except:
+        pass
+
+
 def information():
     help_info = """Вас вітає фінансовий калькулятор easyFinance. 
 Дякуємо, що скористалися програмою!!!
@@ -39,11 +46,11 @@ def information():
 
     label = Label(frame, text=help_info, bg=white_color)
     label.pack()
-    btntomain = Button(frame, text="Продовжити",command=chapter_one_task_one_page)
+    btntomain = Button(frame, text="Продовжити", command=chapter_one_task_one_page)
     btntomain.pack()
 
 
-def template(nb):    # таби з розділами та переходами на кожну задачу
+def template(nb):  # таби з розділами та переходами на кожну задачу
     # Add first tab
     tab1 = ttk.Frame(nb)
     tab2 = ttk.Frame(nb)
@@ -77,7 +84,7 @@ def template(nb):    # таби з розділами та переходами 
     tab1.columnconfigure(15, minsize=5)
     tab1.columnconfigure(16, minsize=70)
     tab1.columnconfigure(17, minsize=5)
-    tab1.columnconfigure(18, minsize=845)
+    tab1.columnconfigure(18, minsize=525)
 
     tab2.columnconfigure(0, minsize=70)
     tab2.columnconfigure(1, minsize=5)
@@ -105,7 +112,7 @@ def template(nb):    # таби з розділами та переходами 
     tab2.columnconfigure(23, minsize=5)
     tab2.columnconfigure(24, minsize=70)
     tab2.columnconfigure(25, minsize=5)
-    tab2.columnconfigure(26, minsize=545)
+    tab2.columnconfigure(26, minsize=225)
 
     tab3.columnconfigure(0, minsize=70)
     tab3.columnconfigure(1, minsize=5)
@@ -139,7 +146,7 @@ def template(nb):    # таби з розділами та переходами 
     tab3.columnconfigure(29, minsize=5)
     tab3.columnconfigure(30, minsize=70)
     tab3.columnconfigure(31, minsize=5)
-    tab3.columnconfigure(32, minsize=320)
+    tab3.columnconfigure(32, minsize=0)
 
     tab4.columnconfigure(0, minsize=70)
     tab4.columnconfigure(1, minsize=5)
@@ -157,7 +164,7 @@ def template(nb):    # таби з розділами та переходами 
     tab4.columnconfigure(13, minsize=5)
     tab4.columnconfigure(14, minsize=70)
     tab4.columnconfigure(15, minsize=5)
-    tab4.columnconfigure(16, minsize=920)
+    tab4.columnconfigure(16, minsize=600)
 
     # tab1
     bt1 = Button(tab1, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=None)
@@ -238,7 +245,7 @@ def template(nb):    # таби з розділами та переходами 
                                                                                                   padx=0, pady=1)
 
     # tab2
-    bt1 = Button(tab2, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt1 = Button(tab2, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_one_page)
     bthint1 = Hovertip(bt1, 'умова')
     bt1.grid(row=0, column=0, padx=5, pady=5)
 
@@ -332,9 +339,11 @@ def template(nb):    # таби з розділами та переходами 
     separator12 = ttk.Separator(tab2, orient='vertical')
     separator12.grid(column=25, row=0, rowspan=2, sticky='ns')
 
-    lbl2 = Label(tab2, text="2.2. Математичне дисконтування та облік за складними ставками відсотка").grid(row=1, column=12,
-                                                                                                  columnspan=13,
-                                                                                                  padx=0, pady=1)
+    lbl2 = Label(tab2, text="2.2. Математичне дисконтування та облік за складними ставками відсотка").grid(row=1,
+                                                                                                           column=12,
+                                                                                                           columnspan=13,
+                                                                                                           padx=0,
+                                                                                                           pady=1)
 
     # tab3
     bt1 = Button(tab3, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=None)
@@ -499,7 +508,6 @@ def template(nb):    # таби з розділами та переходами 
     separator4 = ttk.Separator(tab4, orient='vertical')
     separator4.grid(column=9, row=0, sticky='ns')
 
-
     bt6 = Button(tab4, text='Формула 6', image=icon1, compound=TOP, borderwidth=0, command=None)
     bthint6 = Hovertip(bt6, 'умова')
     bt6.grid(row=0, column=10, padx=5, pady=1)
@@ -524,16 +532,47 @@ def template(nb):    # таби з розділами та переходами 
     lbl1 = Label(tab4, text="4.2. Змінна сила росту").grid(row=1, column=8, columnspan=7, padx=0, pady=1)
 
 
-
 def chapter_one_task_one_page():
     clear()
     frame = Frame(root)
-    frame.place(anchor='n',relx=0.5, rely=0, relheight=1, relwidth=1)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
     nb = ttk.Notebook(frame)
     nb.grid(row=0, column=0, columnspan=5)
     template(nb)
 
     # main_page
+    description = """
+До нарощення за простими відсотковими ставками
+зазвичай вдаються коли мають справу із короткотерміновими
+позиками (термін позики до одного року включно) або у
+випадках, коли проценти періодично виплачуються, не
+приєднуючись до основної суми боргу.
+Нехай
+P – сума грошей (капітал), що даються в борг, за
+які їх власник (кредитор) отримує відсоткові гроші
+(проценти)
+I . Позначимо через
+i
+відсоткову ставку віднесену
+до певного періоду (рік, півріччя, квартал, місяць, день),
+n –
+термін угоди, виражений у періодах.
+Якщо термін угоди виражається у роках (найчастіше
+зустрічається на практиці), то
+i
+визначає річну просту
+відсоткову ставку"""
+    lbl1 = Label(frame, text=description).grid(row=1, column=0, padx=0, pady=1)
+    separatordecription = ttk.Separator(frame, orient='vertical').grid(column=1, row=1, sticky='ns')
 
-    nb1 = ttk.Notebook(frame)
-    nb1.grid(row=1, column=0)
+
+def chapter_two_task_one_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_1(frame)
