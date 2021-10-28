@@ -1,20 +1,26 @@
 # підключення сторінок
 from window import *
+from chapter2 import *
 import SimpleInterestsLibrary as SIL
 import time
 import datetime
 import calendar
 
+
 def add_top_menu():
-   windowTopMenu = Menu(root)
-   root.config(menu=windowTopMenu)
-   windowTopMenu.add_command(label='Довідка',command=information)
-   windowTopMenu.add_command(label='Вихід',command=root.destroy) 
+    windowTopMenu = Menu(root)
+    root.config(menu=windowTopMenu)
+    windowTopMenu.add_command(label='Довідка', command=information)
+    windowTopMenu.add_command(label='Вихід', command=root.destroy)
+
+
 def clear():
-   try:
-      root.winfo_children()[1].destroy()
-   except:
-      pass
+    try:
+        root.winfo_children()[1].destroy()
+    except:
+        pass
+
+
 def information():
     help_info = """Вас вітає фінансовий калькулятор easyFinance. 
       Дякуємо, що скористалися програмою!!!
@@ -44,7 +50,7 @@ def information():
 
     label = Label(frame, text=help_info, bg=white_color)
     label.pack()
-    btntomain = Button(frame, text="Продовжити",command=chapter_one_task_one_page)
+    btntomain = Button(frame, text="Продовжити", command=chapter_one_task_one_page)
     btntomain.pack()
 
 
@@ -83,7 +89,7 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     tab1.columnconfigure(15, minsize=5)
     tab1.columnconfigure(16, minsize=70)
     tab1.columnconfigure(17, minsize=5)
-    tab1.columnconfigure(18, minsize=845)
+    tab1.columnconfigure(18, minsize=525)
 
     tab2.columnconfigure(0, minsize=70)
     tab2.columnconfigure(1, minsize=5)
@@ -111,7 +117,7 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     tab2.columnconfigure(23, minsize=5)
     tab2.columnconfigure(24, minsize=70)
     tab2.columnconfigure(25, minsize=5)
-    tab2.columnconfigure(26, minsize=545)
+    tab2.columnconfigure(26, minsize=225)
 
     tab3.columnconfigure(0, minsize=70)
     tab3.columnconfigure(1, minsize=5)
@@ -145,7 +151,7 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     tab3.columnconfigure(29, minsize=5)
     tab3.columnconfigure(30, minsize=70)
     tab3.columnconfigure(31, minsize=5)
-    tab3.columnconfigure(32, minsize=320)
+    tab3.columnconfigure(32, minsize=0)
 
     tab4.columnconfigure(0, minsize=70)
     tab4.columnconfigure(1, minsize=5)
@@ -163,7 +169,7 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     tab4.columnconfigure(13, minsize=5)
     tab4.columnconfigure(14, minsize=70)
     tab4.columnconfigure(15, minsize=5)
-    tab4.columnconfigure(16, minsize=920)
+    tab4.columnconfigure(16, minsize=600)
 
     # tab1
     bt1 = Button(tab1, text='Прості відсотки', image=icon1, compound=TOP, borderwidth=0, command=lambda:defaul_simple_rates(fr))
@@ -244,7 +250,7 @@ def template(nb,fr=None):    # таби з розділами та перехо�
                                                                                                   padx=0, pady=1)
 
     # tab2
-    bt1 = Button(tab2, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt1 = Button(tab2, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_one_page)
     bthint1 = Hovertip(bt1, 'умова')
     bt1.grid(row=0, column=0, padx=5, pady=5)
 
@@ -338,9 +344,11 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     separator12 = ttk.Separator(tab2, orient='vertical')
     separator12.grid(column=25, row=0, rowspan=2, sticky='ns')
 
-    lbl2 = Label(tab2, text="2.2. Математичне дисконтування та облік за складними ставками відсотка").grid(row=1, column=12,
-                                                                                                  columnspan=13,
-                                                                                                  padx=0, pady=1)
+    lbl2 = Label(tab2, text="2.2. Математичне дисконтування та облік за складними ставками відсотка").grid(row=1,
+                                                                                                           column=12,
+                                                                                                           columnspan=13,
+                                                                                                           padx=0,
+                                                                                                           pady=1)
 
     # tab3
     bt1 = Button(tab3, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=None)
@@ -505,7 +513,6 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     separator4 = ttk.Separator(tab4, orient='vertical')
     separator4.grid(column=9, row=0, sticky='ns')
 
-
     bt6 = Button(tab4, text='Формула 6', image=icon1, compound=TOP, borderwidth=0, command=None)
     bthint6 = Hovertip(bt6, 'умова')
     bt6.grid(row=0, column=10, padx=5, pady=1)
@@ -533,7 +540,7 @@ def template(nb,fr=None):    # таби з розділами та перехо�
 def chapter_one_task_one_page():
     clear()
     frame = Frame(root)
-    frame.place(anchor='nw')
+    frame.place(anchor='nw')    # frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
     nb = ttk.Notebook(frame)
     nb.grid(row=0, column=0, columnspan=5)
     # main_page
@@ -927,3 +934,15 @@ def single_time_payment(frame):
    
    calc_btn.pack(side=LEFT)
    res_label.pack(side=LEFT)
+
+
+def chapter_two_task_one_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_1(frame)
