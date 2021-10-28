@@ -113,15 +113,7 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     tab2.columnconfigure(15, minsize=5)
     tab2.columnconfigure(16, minsize=70)
     tab2.columnconfigure(17, minsize=5)
-    tab2.columnconfigure(18, minsize=70)
-    tab2.columnconfigure(19, minsize=5)
-    tab2.columnconfigure(20, minsize=70)
-    tab2.columnconfigure(21, minsize=5)
-    tab2.columnconfigure(22, minsize=70)
-    tab2.columnconfigure(23, minsize=5)
-    tab2.columnconfigure(24, minsize=70)
-    tab2.columnconfigure(25, minsize=5)
-    tab2.columnconfigure(26, minsize=225)
+    tab2.columnconfigure(18, minsize=525)
 
     tab3.columnconfigure(0, minsize=70)
     tab3.columnconfigure(1, minsize=5)
@@ -174,6 +166,20 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     tab4.columnconfigure(14, minsize=70)
     tab4.columnconfigure(15, minsize=5)
     tab4.columnconfigure(16, minsize=600)
+
+    tab7.columnconfigure(0, minsize=150)
+    tab7.columnconfigure(1, minsize=5)
+    tab7.columnconfigure(2, minsize=150)
+    tab7.columnconfigure(3, minsize=5)
+    tab7.columnconfigure(4, minsize=150)
+    tab7.columnconfigure(5, minsize=5)
+    tab7.columnconfigure(6, minsize=150)
+    tab7.columnconfigure(7, minsize=5)
+    tab7.columnconfigure(8, minsize=150)
+    tab7.columnconfigure(9, minsize=5)
+    tab7.columnconfigure(10, minsize=150)
+    tab7.columnconfigure(11, minsize=5)
+    tab7.columnconfigure(12, minsize=525)
 
     # tab1
     bt1 = Button(tab1, text='Прості відсотки', image=icon1, compound=TOP, borderwidth=0, command=lambda:defaul_simple_rates(fr))
@@ -254,103 +260,75 @@ def template(nb,fr=None):    # таби з розділами та перехо�
                                                                                                   padx=0, pady=1)
 
     # tab2
-    bt1 = Button(tab2, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_one_page)
-    bthint1 = Hovertip(bt1, 'умова')
+    bt1 = Button(tab2, text='Нарощення складних відсотків', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_one_page)
+    bthint1 = Hovertip(bt1, 'Обчислити нарощення складних відсотків')
     bt1.grid(row=0, column=0, padx=5, pady=5)
 
     separator0 = ttk.Separator(tab2, orient='vertical')
     separator0.grid(column=1, row=0, sticky='ns')
 
-    bt2 = Button(tab2, text='Формула 2', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint2 = Hovertip(bt2, 'умова')
+    bt2 = Button(tab2, text='Проценти за період', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_two_page)
+    bthint2 = Hovertip(bt2, 'Вирахування процентів за весь період нарощення за складними відсотками')
     bt2.grid(row=0, column=2, padx=5, pady=5)
 
     separator1 = ttk.Separator(tab2, orient='vertical')
     separator1.grid(column=3, row=0, sticky='ns')
 
-    bt3 = Button(tab2, text='Формула 3', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint3 = Hovertip(bt3, 'умова')
+    bt3 = Button(tab2, text='Нарощення за нс', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_three_page)
+    bthint3 = Hovertip(bt3, 'Нарощення за номінальною ставкою j')
     bt3.grid(row=0, column=4, padx=5, pady=1)
 
     separator2 = ttk.Separator(tab2, orient='vertical')
     separator2.grid(column=5, row=0, sticky='ns')
 
-    bt4 = Button(tab2, text='Формула 4', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint4 = Hovertip(bt4, 'умова')
+    bt4 = Button(tab2, text='Відповідний множник нарощення', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_four_page)
+    bthint4 = Hovertip(bt4, '')
     bt4.grid(row=0, column=6, padx=5, pady=1)
 
     separator3 = ttk.Separator(tab2, orient='vertical')
     separator3.grid(column=7, row=0, sticky='ns')
 
-    bt5 = Button(tab2, text='Формула 5', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint5 = Hovertip(bt5, 'умова')
-    bt5.grid(row=0, column=8, padx=5, pady=1)
-
-    separator4 = ttk.Separator(tab2, orient='vertical')
-    separator4.grid(column=9, row=0, sticky='ns')
-
-    bt6 = Button(tab2, text='Формула 6', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint6 = Hovertip(bt6, 'умова')
-    bt6.grid(row=0, column=10, padx=5, pady=1)
+    bt6 = Button(tab2, text='Ефективна % ставка', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_five_page)
+    bthint6 = Hovertip(bt6, 'Ефективна ставка відображає реальний відносний дохід отриманий за рік')
+    bt6.grid(row=0, column=8, padx=5, pady=1)
 
     separator5 = ttk.Separator(tab2, orient='vertical')
-    separator5.grid(column=11, row=0, rowspan=2, sticky='ns')
+    separator5.grid(column=9, row=0, rowspan=2, sticky='ns')
 
-    lbl1 = Label(tab2, text="2.1. Нарахування відсотків у користувацькому кредиті").grid(row=1, column=0, columnspan=11,
+    lbl1 = Label(tab2, text="2.1. Нарахування відсотків у користувацькому кредиті").grid(row=1, column=0, columnspan=9,
                                                                                          padx=0, pady=1)
 
-    bt7 = Button(tab2, text='Формула 7', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint7 = Hovertip(bt7, 'умова')
-    bt7.grid(row=0, column=12, padx=5, pady=5)
+    bt7 = Button(tab2, text='Дисконтний множник', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_six_page)
+    bthint7 = Hovertip(bt7, 'Як і у випадку використання простої відсоткової ставки, \nматематичне дисконтування за складною ставкою відсотків,тобто знаходження значенняP за \nвідомим значенням S , відбувається за формулою...')
+    bt7.grid(row=0, column=10, padx=5, pady=5)
 
     separator6 = ttk.Separator(tab2, orient='vertical')
-    separator6.grid(column=13, row=0, sticky='ns')
+    separator6.grid(column=11, row=0, sticky='ns')
 
-    bt8 = Button(tab2, text='Формула 8', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint8 = Hovertip(bt8, 'умова')
-    bt8.grid(row=0, column=14, padx=5, pady=5)
+    bt8 = Button(tab2, text='Дисконтний множник', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_seven_page)
+    bthint8 = Hovertip(bt8, 'У випадку періодичних нарахувань')
+    bt8.grid(row=0, column=12, padx=5, pady=5)
 
     separator7 = ttk.Separator(tab2, orient='vertical')
-    separator7.grid(column=15, row=0, sticky='ns')
+    separator7.grid(column=13, row=0, sticky='ns')
 
-    bt9 = Button(tab2, text='Формула 9', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint9 = Hovertip(bt9, 'умова')
-    bt9.grid(row=0, column=16, padx=5, pady=1)
+    bt9 = Button(tab2, text='Cкладна облікова ставка', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_eight_page)
+    bthint9 = Hovertip(bt9, 'Банківський облік за складною обліковою ставкою проводять за розрахунковою формулою...')
+    bt9.grid(row=0, column=14, padx=5, pady=1)
 
     separator8 = ttk.Separator(tab2, orient='vertical')
-    separator8.grid(column=17, row=0, sticky='ns')
+    separator8.grid(column=15, row=0, sticky='ns')
 
-    bt10 = Button(tab2, text='Формула 10', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint10 = Hovertip(bt10, 'умова')
-    bt10.grid(row=0, column=18, padx=5, pady=5)
+    bt10 = Button(tab2, text='НРОС', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_nine_page)
+    bthint10 = Hovertip(bt10, 'Номінальна річна облікова ставка - складна облікова ставка у випадку періодичних нарахувань')
+    bt10.grid(row=0, column=16, padx=5, pady=5)
 
     separator9 = ttk.Separator(tab2, orient='vertical')
-    separator9.grid(column=19, row=0, sticky='ns')
-
-    bt11 = Button(tab2, text='Формула 11', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint11 = Hovertip(bt11, 'умова')
-    bt11.grid(row=0, column=20, padx=5, pady=5)
-
-    separator10 = ttk.Separator(tab2, orient='vertical')
-    separator10.grid(column=21, row=0, sticky='ns')
-
-    bt12 = Button(tab2, text='Формула 12', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint12 = Hovertip(bt12, 'умова')
-    bt12.grid(row=0, column=22, padx=5, pady=1)
-
-    separator11 = ttk.Separator(tab2, orient='vertical')
-    separator11.grid(column=23, row=0, sticky='ns')
-
-    bt13 = Button(tab2, text='Формула 13', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint13 = Hovertip(bt13, 'умова')
-    bt13.grid(row=0, column=24, padx=5, pady=1)
-
-    separator12 = ttk.Separator(tab2, orient='vertical')
-    separator12.grid(column=25, row=0, rowspan=2, sticky='ns')
+    separator9.grid(column=17, row=0, rowspan=2, sticky='ns')
 
     lbl2 = Label(tab2, text="2.2. Математичне дисконтування та облік за складними ставками відсотка").grid(row=1,
-                                                                                                           column=12,
-                                                                                                           columnspan=13,
+                                                                                                           column=10,
+                                                                                                           columnspan=7,
                                                                                                            padx=0,
                                                                                                            pady=1)
 
@@ -540,6 +518,66 @@ def template(nb,fr=None):    # таби з розділами та перехо�
 
     lbl1 = Label(tab4, text="4.2. Змінна сила росту").grid(row=1, column=8, columnspan=7, padx=0, pady=1)
 
+    # tab7
+    bt1 = Button(tab7, text='Формула 1', image=icon1, compound=TOP, borderwidth=0,
+                 command=None)
+    bthint1 = Hovertip(bt1, 'умова')
+    bt1.grid(row=0, column=0, padx=5, pady=5, sticky='nsew')
+
+    separator0 = ttk.Separator(tab7, orient='vertical')
+    separator0.grid(column=1, row=0, sticky='ns')
+
+    bt2 = Button(tab7, text='Формула 2', image=icon1, compound=TOP, borderwidth=0,
+                 command=None)
+    bthint2 = Hovertip(bt2, 'умова')
+    bt2.grid(row=0, column=2, padx=5, pady=5, sticky='nsew')
+
+    separator1 = ttk.Separator(tab7, orient='vertical')
+    separator1.grid(column=3, row=0, rowspan=2, sticky='ns')
+
+    lbl1 = Label(tab7, text="7.1. Нарощення за простими відсотковими ставками").grid(row=1, column=0, columnspan=3,
+                                                                                     padx=0, pady=1)
+    bt3 = Button(tab7, text='Формула 3', image=icon1, compound=TOP, borderwidth=0,
+                 command=None)
+    bthint3 = Hovertip(bt3, 'умова')
+    bt3.grid(row=0, column=4, padx=5, pady=1, sticky='nsew')
+
+    separator2 = ttk.Separator(tab7, orient='vertical')
+    separator2.grid(column=5, row=0, sticky='ns')
+
+    bt4 = Button(tab7, text='Формула 4', image=icon1, compound=TOP, borderwidth=0,
+                 command=None)
+    bthint4 = Hovertip(bt4, 'умова')
+    bt4.grid(row=0, column=6, padx=5, pady=1, sticky='nsew')
+
+    separator3 = ttk.Separator(tab7, orient='vertical')
+    separator3.grid(column=7, row=0, rowspan=2, sticky='ns')
+
+
+
+    lbl2 = Label(tab7, text="7.2. Нарахування простих відсотків на змінні в часі суми депозиту").grid(row=1, column=4,
+                                                                                                      columnspan=3,
+                                                                                                      padx=0,
+                                                                                                      pady=1)
+    bt5 = Button(tab7, text='Формула 5', image=icon1, compound=TOP, borderwidth=0,
+                 command=None)
+    bthint5 = Hovertip(bt5, 'умова')
+    bt5.grid(row=0, column=8, padx=5, pady=1, sticky='nsew')
+
+    separator4 = ttk.Separator(tab7, orient='vertical')
+    separator4.grid(column=9, row=0, sticky='ns')
+
+    bt6 = Button(tab7, text='Формула 6', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bthint6 = Hovertip(bt6, 'умова')
+    bt6.grid(row=0, column=10, padx=5, pady=1, sticky='nsew')
+
+    separator5 = ttk.Separator(tab7, orient='vertical')
+    separator5.grid(column=11, row=0, rowspan=2, sticky='ns')
+
+    lbl3 = Label(tab7, text="7.3. Нарахування відсотків у користувацькому кредиті").grid(row=1, column=8, columnspan=3,
+                                                                                         padx=0,
+                                                                                         pady=1)
+
 
 def chapter_one_task_one_page():
     clear()
@@ -550,13 +588,16 @@ def chapter_one_task_one_page():
     # main_page
     click_frame=Frame(frame)
     click_frame.grid(row=1, column=0,padx=0)
-   #  lb=Label(click_frame,text="ttuutututut")
-   #  lb.pack()
+    lb=Label(click_frame,text="easyFinance")
+    lb.pack()
     template(nb,click_frame)
+
+
 def clear_frame(frame):
    for x in frame.winfo_children():
       x.destroy()
-    
+
+
 def defaul_simple_rates(frame):
    clear_frame(frame)
    frame.grid(row=1, column=0)
@@ -613,6 +654,7 @@ def defaul_simple_rates(frame):
    
    calc_btn.pack(side=LEFT)
    res_label.pack(side=LEFT)
+
 
 def changing_simple_rates(frame):
    clear_frame(frame)
@@ -699,6 +741,7 @@ def changing_simple_rates(frame):
    
    calc_btn.pack(side=LEFT)
    res_label.pack(side=LEFT)
+
 
 def reinvestment_simple_rates(frame):
 
@@ -787,6 +830,7 @@ def reinvestment_simple_rates(frame):
    calc_btn.pack(side=LEFT)
    res_label.pack(side=LEFT)
 
+
 def simple_rates_for_time_changing_sums(frame):
    clear_frame(frame)
    frame.grid(row=1, column=0)
@@ -872,6 +916,7 @@ def simple_rates_for_time_changing_sums(frame):
    calc_btn.pack(side=LEFT)
    res_label.pack(side=LEFT)
 
+
 def single_time_payment(frame):
    clear_frame(frame)
    frame.grid(row=1, column=0)
@@ -938,6 +983,7 @@ def single_time_payment(frame):
    
    calc_btn.pack(side=LEFT)
    res_label.pack(side=LEFT)
+
 
 def discount_prise(frame):
    clear_frame(frame)
@@ -2256,3 +2302,99 @@ def chapter_two_task_one_page():
 
     # page
     formula2_1(frame)
+
+
+def chapter_two_task_two_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_2(frame)
+
+
+def chapter_two_task_three_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_3(frame)
+
+
+def chapter_two_task_four_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_4(frame)
+
+
+def chapter_two_task_five_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_4(frame)
+
+
+def chapter_two_task_six_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_6(frame)
+
+
+def chapter_two_task_seven_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_7(frame)
+
+
+def chapter_two_task_eight_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_8(frame)
+
+
+def chapter_two_task_nine_page():
+    clear()
+    frame = Frame(root)
+    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
+    nb = ttk.Notebook(frame)
+    nb.grid(row=0, column=0, columnspan=5)
+    template(nb)
+
+    # page
+    formula2_9(frame)
