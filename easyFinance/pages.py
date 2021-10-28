@@ -415,56 +415,56 @@ def template(nb,fr=None):    # таби з розділами та перехо�
                                                                                                           padx=0,
                                                                                                           pady=1)
 
-    bt9 = Button(tab3, text='Формула 9', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt9 = Button(tab3, text='Кількість років', image=icon1, compound=TOP, borderwidth=0, command=lambda:Сget_n_by_SPi(fr))
     bthint9 = Hovertip(bt9, 'умова')
     bt9.grid(row=0, column=16, padx=5, pady=1)
 
     separator8 = ttk.Separator(tab3, orient='vertical')
     separator8.grid(column=17, row=0, sticky='ns')
 
-    bt10 = Button(tab3, text='Формула 10', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt10 = Button(tab3, text='Кількість років', image=icon1, compound=TOP, borderwidth=0, command=lambda:Cget_n_by_SPd(fr))
     bthint10 = Hovertip(bt10, 'умова')
     bt10.grid(row=0, column=18, padx=5, pady=5)
 
     separator9 = ttk.Separator(tab3, orient='vertical')
     separator9.grid(column=19, row=0, sticky='ns')
 
-    bt11 = Button(tab3, text='Формула 11', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt11 = Button(tab3, text='Кількість років', image=icon1, compound=TOP, borderwidth=0, command=lambda: Cget_n_by_SPmj(fr))
     bthint11 = Hovertip(bt11, 'умова')
     bt11.grid(row=0, column=20, padx=5, pady=5)
 
     separator10 = ttk.Separator(tab3, orient='vertical')
     separator10.grid(column=21, row=0, sticky='ns')
 
-    bt12 = Button(tab3, text='Формула 12', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt12 = Button(tab3, text='Кількість років', image=icon1, compound=TOP, borderwidth=0, command=lambda:Cget_n_by_SPmf(fr))
     bthint12 = Hovertip(bt12, 'умова')
     bt12.grid(row=0, column=22, padx=5, pady=1)
 
     separator11 = ttk.Separator(tab3, orient='vertical')
     separator11.grid(column=23, row=0, sticky='ns')
 
-    bt13 = Button(tab3, text='Формула 13', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt13 = Button(tab3, text='Відсоткова ставка', image=icon1, compound=TOP, borderwidth=0, command=lambda:Cget_i_by_SPn(fr))
     bthint13 = Hovertip(bt13, 'умова')
     bt13.grid(row=0, column=24, padx=5, pady=1)
 
     separator12 = ttk.Separator(tab3, orient='vertical')
     separator12.grid(column=25, row=0, sticky='ns')
 
-    bt14 = Button(tab3, text='Формула 14', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt14 = Button(tab3, text='Дисконт', image=icon1, compound=TOP, borderwidth=0, command=lambda:Cget_d_by_SPn(fr))
     bthint14 = Hovertip(bt14, 'умова')
     bt14.grid(row=0, column=26, padx=5, pady=1)
 
     separator13 = ttk.Separator(tab3, orient='vertical')
     separator13.grid(column=27, row=0, sticky='ns')
 
-    bt15 = Button(tab3, text='Формула 15', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt15 = Button(tab3, text='Відсоткова ставка', image=icon1, compound=TOP, borderwidth=0, command=lambda:Cget_j_by_SPmn(fr))
     bthint15 = Hovertip(bt15, 'умова')
     bt15.grid(row=0, column=28, padx=5, pady=1)
 
     separator14 = ttk.Separator(tab3, orient='vertical')
     separator14.grid(column=29, row=0, sticky='ns')
 
-    bt16 = Button(tab3, text='Формула 16', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt16 = Button(tab3, text='Номінальна ставка', image=icon1, compound=TOP, borderwidth=0, command=lambda:Cget_f_by_SPmn(fr))
     bthint16 = Hovertip(bt16, 'умова')
     bt16.grid(row=0, column=30, padx=5, pady=1)
 
@@ -548,8 +548,8 @@ def chapter_one_task_one_page():
     # main_page
     click_frame=Frame(frame)
     click_frame.grid(row=1, column=0,padx=0)
-    lb=Label(click_frame,text="ttuutututut")
-    lb.pack()
+   #  lb=Label(click_frame,text="ttuutututut")
+   #  lb.pack()
     template(nb,click_frame)
 def clear_frame(frame):
    for x in frame.winfo_children():
@@ -1530,6 +1530,374 @@ def get_d_by_SPt(frame):
 
       p= SIFP.get_d_by_SPt(s,p,t,k)
       res_var.set("дисконт "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def Сget_n_by_SPi(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Відсоткова ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Сума боргу: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      i=float(interest.get())
+      p=float(capital.get())
+      s=float(debt.get())
+
+      p= CIFP.get_n_by_SPi(s,p,i)
+      res_var.set("Кількість років: "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def Cget_n_by_SPd(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Дисконт: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Сума боргу: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      d=float(interest.get())
+      p=float(capital.get())
+      s=float(debt.get())
+
+      p= CIFP.get_n_by_SPi(s,p,d)
+      res_var.set("Кількість років: "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def Cget_n_by_SPmj(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Відсоткова ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Сума боргу: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   base_label=Label(input_frame,text="Кількість зарахувань: ")
+   base_label.grid(row=3,column=0)
+   base=DoubleVar()
+   base_entry=Entry(input_frame, width = 15, textvariable = base)
+   base_entry.grid(row=3,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      j=float(interest.get())
+      p=float(capital.get())
+      s=float(debt.get())
+      m=float(base.get())
+
+      p= CIFP.get_n_by_SPmj(s,p,m,j)
+      res_var.set("Кількість днів "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def Cget_n_by_SPmf(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Номінальна ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Сума боргу: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   base_label=Label(input_frame,text="Кількість зарахувань: ")
+   base_label.grid(row=3,column=0)
+   base=DoubleVar()
+   base_entry=Entry(input_frame, width = 15, textvariable = base)
+   base_entry.grid(row=3,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      f=float(interest.get())
+      p=float(capital.get())
+      s=float(debt.get())
+      m=float(base.get())
+
+      p= CIFP.get_n_by_SPmf(s,p,m,f)
+      res_var.set("Кількість днів "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def Cget_i_by_SPn(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Кількість років: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Сума боргу: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      n=float(interest.get())
+      p=float(capital.get())
+      s=float(debt.get())
+
+      p= CIFP.get_i_by_SPn(s,p,N)
+      res_var.set("Відсоткова ставка: "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def Cget_d_by_SPn(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Кількість років: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Сума боргу: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      n=float(interest.get())
+      p=float(capital.get())
+      s=float(debt.get())
+
+      p= CIFP.get_d_by_SPn(s,p,N)
+      res_var.set("Дисконт: "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def Cget_j_by_SPmn(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Кількість років: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Сума боргу: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   base_label=Label(input_frame,text="Кількість зарахувань: ")
+   base_label.grid(row=3,column=0)
+   base=DoubleVar()
+   base_entry=Entry(input_frame, width = 15, textvariable = base)
+   base_entry.grid(row=3,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      n=float(interest.get())
+      p=float(capital.get())
+      s=float(debt.get())
+      m=float(base.get())
+
+      p= CIFP.get_j_by_SPmn(s,p,m,n)
+      res_var.set("Відсоткова ставка: "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def Cget_f_by_SPmn(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Кількість років: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Сума боргу: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   base_label=Label(input_frame,text="Кількість зарахувань: ")
+   base_label.grid(row=3,column=0)
+   base=DoubleVar()
+   base_entry=Entry(input_frame, width = 15, textvariable = base)
+   base_entry.grid(row=3,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      n=float(interest.get())
+      p=float(capital.get())
+      s=float(debt.get())
+      m=float(base.get())
+
+      p= CIFP.get_j_by_SPmn(s,p,m,n)
+      res_var.set("Номінальна ставка: "+str(p))
       print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
