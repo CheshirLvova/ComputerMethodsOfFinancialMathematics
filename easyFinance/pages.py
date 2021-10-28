@@ -166,28 +166,28 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     tab4.columnconfigure(16, minsize=920)
 
     # tab1
-    bt1 = Button(tab1, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=lambda:defaul_simple_rates(fr))
+    bt1 = Button(tab1, text='Прості відсотки', image=icon1, compound=TOP, borderwidth=0, command=lambda:defaul_simple_rates(fr))
     bthint1 = Hovertip(bt1, 'умова')
     bt1.grid(row=0, column=0, padx=5, pady=5)
 
     separator0 = ttk.Separator(tab1, orient='vertical')
     separator0.grid(column=1, row=0, sticky='ns')
 
-    bt2 = Button(tab1, text='Формула 2', image=icon1, compound=TOP, borderwidth=0, command=lambda:changing_simple_rates(fr))
+    bt2 = Button(tab1, text='Змінні відсотки', image=icon1, compound=TOP, borderwidth=0, command=lambda:changing_simple_rates(fr))
     bthint2 = Hovertip(bt2, 'умова')
     bt2.grid(row=0, column=2, padx=5, pady=5)
 
     separator1 = ttk.Separator(tab1, orient='vertical')
     separator1.grid(column=3, row=0, sticky='ns')
 
-    bt3 = Button(tab1, text='Формула 3', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt3 = Button(tab1, text='Реінвестування', image=icon1, compound=TOP, borderwidth=0, command=lambda:reinvestment_simple_rates(fr))
     bthint3 = Hovertip(bt3, 'умова')
     bt3.grid(row=0, column=4, padx=5, pady=1)
 
     separator2 = ttk.Separator(tab1, orient='vertical')
     separator2.grid(column=5, row=0, rowspan=2, sticky='ns')
 
-    bt4 = Button(tab1, text='Формула 4', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt4 = Button(tab1, text='Змінна сума', image=icon1, compound=TOP, borderwidth=0, command=lambda:simple_rates_for_time_changing_sums(fr))
     bthint4 = Hovertip(bt4, 'умова')
     bt4.grid(row=0, column=6, padx=5, pady=1)
 
@@ -197,7 +197,7 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     lbl1 = Label(tab1, text="1.1. Нарощення за простими відсотковими ставками").grid(row=1, column=0, columnspan=5,
                                                                                      padx=0, pady=1)
 
-    bt5 = Button(tab1, text='Формула 5', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt5 = Button(tab1, text='Разова виплата', image=icon1, compound=TOP, borderwidth=0, command=lambda:single_time_payment(fr))
     bthint5 = Hovertip(bt5, 'умова')
     bt5.grid(row=0, column=8, padx=5, pady=1)
 
@@ -639,6 +639,271 @@ def changing_simple_rates(frame):
    capital=DoubleVar()
    capital_entry=Entry(input_frame, width = 15, textvariable = capital)
    capital_entry.grid(row=1,column=1)
+   periods_var=StringVar(value="")
+   periods_label=Label(frame,textvariable=periods_var)
+   t=[]
+   i=[]
+   def add_period():
+      f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
+      l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      ti=int((l_day-f_day).days)
+      t.append(ti)
+      ii=float(interest.get())
+      i.append(ii)
+      periods_var.set(periods_var.get()+"\n"+first_day.get_date()+" "+last_day.get_date()+" "+str(ii))
+      
+   def del_period():
+      try:
+         datins=periods_var.get().split("\n")
+         del(datins[-1])
+         periods_var.set("\n".join(datins))
+         del(t[-1])
+         del(i[-1])
+      except:
+         pass
+
+   add_period_btn=Button(input_frame,text="Додати період",command=add_period)
+   add_period_btn.grid(row=0,column=2)
+   del_period_btn=Button(input_frame,text="Видалити період",command=del_period)
+   del_period_btn.grid(row=1,column=2)
+   input_frame.pack(side=LEFT)
+   periods_label.pack(side=LEFT)
+   
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   
+
+   def clak():
+      k=365
+      l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      if(calendar.isleap(l_day.year)):
+         k=366
+      k=[k]*len(t)
+      p=float(capital.get())
+      s= SIL.changing_simple_rates(p,t,i,k)
+      res_var.set("Сума боргу: "+str(s))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def reinvestment_simple_rates(frame):
+
+   clear_frame(frame)
+   frame.grid(row=1, column=0)
+
+   date_frame=Frame(frame)
+
+   first_date_frame=Frame(date_frame)
+   start_label=Label(first_date_frame,text="Початок")
+   start_label.pack()
+   first_day = Calendar(first_date_frame,locale="uk_UA")
+   first_day.pack()
+   first_date_frame.pack(side=LEFT)
+   
+   last_date_frame=Frame(date_frame)
+   end_label=Label(last_date_frame,text="Кінець")
+   end_label.pack()
+   last_day = Calendar(last_date_frame,locale="uk_UA")
+   last_day.pack()
+   last_date_frame.pack(side=LEFT)
+
+   date_frame.pack(side=LEFT)
+
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Відсоткова ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   cap_rate_label=Label(input_frame,text="Капітал: ")
+   cap_rate_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+   periods_var=StringVar(value="")
+   periods_label=Label(frame,textvariable=periods_var)
+   t=[]
+   i=[]
+   def add_period():
+      f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
+      l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      ti=int((l_day-f_day).days)
+      t.append(ti)
+      ii=float(interest.get())
+      i.append(ii)
+      periods_var.set(periods_var.get()+"\n"+first_day.get_date()+" "+last_day.get_date()+" "+str(ii))
+      
+   def del_period():
+      try:
+         datins=periods_var.get().split("\n")
+         del(datins[-1])
+         periods_var.set("\n".join(datins))
+         del(t[-1])
+         del(i[-1])
+      except:
+         pass
+
+   add_period_btn=Button(input_frame,text="Додати період",command=add_period)
+   add_period_btn.grid(row=0,column=2)
+   del_period_btn=Button(input_frame,text="Видалити період",command=del_period)
+   del_period_btn.grid(row=1,column=2)
+   input_frame.pack(side=LEFT)
+   periods_label.pack(side=LEFT)
+   
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   
+
+   def clak():
+      k=365
+      l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      if(calendar.isleap(l_day.year)):
+         k=366
+      k=[k]*len(t)
+      p=float(capital.get())
+      s= SIL.reinvestment_simple_rates(p,t,i,k)
+      res_var.set("Сума боргу: "+str(s))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def simple_rates_for_time_changing_sums(frame):
+   clear_frame(frame)
+   frame.grid(row=1, column=0)
+
+   date_frame=Frame(frame)
+
+   first_date_frame=Frame(date_frame)
+   start_label=Label(first_date_frame,text="Початок")
+   start_label.pack()
+   first_day = Calendar(first_date_frame,locale="uk_UA")
+   first_day.pack()
+   first_date_frame.pack(side=LEFT)
+   
+   last_date_frame=Frame(date_frame)
+   end_label=Label(last_date_frame,text="Кінець")
+   end_label.pack()
+   last_day = Calendar(last_date_frame,locale="uk_UA")
+   last_day.pack()
+   last_date_frame.pack(side=LEFT)
+
+   date_frame.pack(side=LEFT)
+
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Відсоткова ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   cap_rate_label=Label(input_frame,text="Залишок на рахунку: ")
+   cap_rate_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+   periods_var=StringVar(value="")
+   periods_label=Label(frame,textvariable=periods_var)
+   t=[]
+   r=[]
+   def add_period():
+      f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
+      l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      ti=int((l_day-f_day).days)
+      t.append(ti)
+      ri=float(capital.get())
+      r.append(ri)
+      periods_var.set(periods_var.get()+"\n"+first_day.get_date()+" "+last_day.get_date()+" "+str(ri))
+      
+   def del_period():
+      try:
+         datins=periods_var.get().split("\n")
+         del(datins[-1])
+         periods_var.set("\n".join(datins))
+         del(t[-1])
+         del(r[-1])
+      except:
+         pass
+
+   add_period_btn=Button(input_frame,text="Додати період",command=add_period)
+   add_period_btn.grid(row=0,column=2)
+   del_period_btn=Button(input_frame,text="Видалити період",command=del_period)
+   del_period_btn.grid(row=1,column=2)
+   input_frame.pack(side=LEFT)
+   periods_label.pack(side=LEFT)
+   
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   
+
+   def clak():
+      k=365
+      l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      if(calendar.isleap(l_day.year)):
+         k=366
+      i=float(interest.get())
+      s= SIL.simple_rates_for_time_changing_sums(r,t,i,k)
+      res_var.set("Нарахована сума: "+str(s))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def single_time_payment(frame):
+   clear_frame(frame)
+   frame.grid(row=1, column=0)
+
+   date_frame=Frame(frame)
+
+   first_date_frame=Frame(date_frame)
+   start_label=Label(first_date_frame,text="Початок")
+   start_label.pack()
+   first_day = Calendar(first_date_frame,locale="uk_UA")
+   first_day.pack()
+   first_date_frame.pack(side=LEFT)
+   
+   last_date_frame=Frame(date_frame)
+   end_label=Label(last_date_frame,text="Кінець")
+   end_label.pack()
+   last_day = Calendar(last_date_frame,locale="uk_UA")
+   last_day.pack()
+   last_date_frame.pack(side=LEFT)
+
+   date_frame.pack(side=LEFT)
+
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Відсоткова ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   amount_label=Label(input_frame,text="Кількість виплат: ")
+   amount_label.grid(row=2,column=0)
+   amount=DoubleVar()
+   amount_entry=Entry(input_frame, width = 15, textvariable = amount)
+   amount_entry.grid(row=2,column=1)
+
    input_frame.pack(side=LEFT)
    res_var=StringVar(value="")
    res_label=Label(frame,textvariable=res_var)
@@ -651,8 +916,11 @@ def changing_simple_rates(frame):
          k=366
       p=float(capital.get())
       i=float(interest.get())
+      m=float(amount.get())
       s= SIL.defaul_simple_rates(p,t,i,k)
-      res_var.set("Сума боргу: "+str(s))
+      print(s)
+      r=SIL.single_time_payment(s,t/k,m)
+      res_var.set("Сума разової виплати: "+str(r))
       print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
