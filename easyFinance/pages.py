@@ -4,6 +4,7 @@ from chapter2 import *
 import SimpleInterestsLibrary as SIL
 import SimpleInterestsFinanceParameters as SIFP
 import ComplicatedInterestsFinanceParameters as CIFP
+import continuousInterests as CI
 import time
 import datetime
 import calendar
@@ -478,28 +479,28 @@ def template(nb,fr=None):    # таби з розділами та перехо�
                                                                                                            pady=1)
 
     # tab4
-    bt1 = Button(tab4, text='Формула 1', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt1 = Button(tab4, text='Cума нарахування', image=icon1, compound=TOP, borderwidth=0, command=lambda:continuousSum(fr))
     bthint1 = Hovertip(bt1, 'умова')
     bt1.grid(row=0, column=0, padx=5, pady=5)
 
     separator0 = ttk.Separator(tab4, orient='vertical')
     separator0.grid(column=1, row=0, sticky='ns')
 
-    bt2 = Button(tab4, text='Формула 2', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt2 = Button(tab4, text='Неперервна ставка', image=icon1, compound=TOP, borderwidth=0, command=lambda: continuousRate(fr))
     bthint2 = Hovertip(bt2, 'умова')
     bt2.grid(row=0, column=2, padx=5, pady=5)
 
     separator1 = ttk.Separator(tab4, orient='vertical')
     separator1.grid(column=3, row=0, sticky='ns')
 
-    bt3 = Button(tab4, text='Формула 3', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt3 = Button(tab4, text='Відсоткова ставка', image=icon1, compound=TOP, borderwidth=0, command=lambda:rate_from_contimuousRate(fr))
     bthint3 = Hovertip(bt3, 'умова')
     bt3.grid(row=0, column=4, padx=5, pady=1)
 
     separator2 = ttk.Separator(tab4, orient='vertical')
     separator2.grid(column=5, row=0, sticky='ns')
 
-    bt4 = Button(tab4, text='Формула 4', image=icon1, compound=TOP, borderwidth=0, command=None)
+    bt4 = Button(tab4, text='Сума боргу', image=icon1, compound=TOP, borderwidth=0, command=lambda: get_P_from_countinuousSum(fr))
     bthint4 = Hovertip(bt4, 'умова')
     bt4.grid(row=0, column=6, padx=5, pady=1)
 
@@ -1904,6 +1905,142 @@ def Cget_f_by_SPmn(frame):
    
    calc_btn.pack(side=LEFT)
    res_label.pack(side=LEFT)
+
+def continuousSum(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Сила росту: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Капітал: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Кількість років: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      delta=float(interest.get())
+      p=float(capital.get())
+      n=float(debt.get())
+
+      p= CI.continuousSum(p,d,n)
+      res_var.set("Сума нарахування: "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def continuousRate(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Відсоткова ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      i=float(interest.get())
+
+      p= CI.continuousRate(i)
+      res_var.set("Неперервна ставка: "+str())
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def rate_from_contimuousRate(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Неперервна ставка: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      i=float(interest.get())
+
+      p= CI.rate_from_contimuousRate(i)
+      res_var.set("Відсоткова ставка: "+str())
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+def get_P_from_countinuousSum(frame):
+   clear_frame(frame)
+   input_frame=Frame(frame)
+
+   int_rate_label=Label(input_frame,text="Сила росту: ")
+   int_rate_label.grid(row=0,column=0)
+   interest=DoubleVar()
+   interest_entry=Entry(input_frame, width = 15, textvariable = interest)
+   interest_entry.grid(row=0,column=1)
+   input_frame.pack(side=LEFT)
+
+   capital_label=Label(input_frame,text="Сума нарахування: ")
+   capital_label.grid(row=1,column=0)
+   capital=DoubleVar()
+   capital_entry=Entry(input_frame, width = 15, textvariable = capital)
+   capital_entry.grid(row=1,column=1)
+
+   debt_label=Label(input_frame,text="Кількість років: ")
+   debt_label.grid(row=2,column=0)
+   debt=DoubleVar()
+   debt_entry=Entry(input_frame, width = 15, textvariable = debt)
+   debt_entry.grid(row=2,column=1)
+   input_frame.pack(side=LEFT)
+
+   input_frame.pack(side=LEFT)
+
+   res_var=StringVar(value="")
+   res_label=Label(frame,textvariable=res_var)
+   def clak():
+      delta=float(interest.get())
+      s=float(capital.get())
+      n=float(debt.get())
+
+      p= CI.get_P_from_countinuousSum(s,delta,n)
+      res_var.set("Сума боргу: "+str(p))
+      print(s)
+   
+   calc_btn=Button(frame,text="Розрахувати", command=clak)
+   
+   calc_btn.pack(side=LEFT)
+   res_label.pack(side=LEFT)
+
+
 
 def chapter_two_task_one_page():
     clear()
