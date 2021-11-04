@@ -2,7 +2,7 @@ from math import e
 from math import exp
 from math import log as ln
 def continuousSum(p,delta,n):
-    S=p*exp(delta,n)
+    S=p*exp(delta*n)
     return S
 def continuousRate(i):
     delta=ln(1+i)
