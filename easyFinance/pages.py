@@ -1,6 +1,7 @@
 # підключення сторінок
 from window import *
 from chapter2 import *
+from chapter7 import *
 import SimpleInterestsLibrary as SIL
 import SimpleInterestsFinanceParameters as SIFP
 import ComplicatedInterestsFinanceParameters as CIFP
@@ -261,35 +262,35 @@ def template(nb,fr=None):    # таби з розділами та перехо�
                                                                                                   padx=0, pady=1)
 
     # tab2
-    bt1 = Button(tab2, text='Нарощення складних відсотків', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_one_page)
+    bt1 = Button(tab2, text='Нарощення складних відсотків', image=icon1, compound=TOP, borderwidth=0, command=lambda: chapter_two_task_one_page(fr))
     bthint1 = Hovertip(bt1, 'Обчислити нарощення складних відсотків')
     bt1.grid(row=0, column=0, padx=5, pady=5)
 
     separator0 = ttk.Separator(tab2, orient='vertical')
     separator0.grid(column=1, row=0, sticky='ns')
 
-    bt2 = Button(tab2, text='Проценти за період', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_two_page)
+    bt2 = Button(tab2, text='Проценти за період', image=icon1, compound=TOP, borderwidth=0, command=lambda: chapter_two_task_two_page(fr))
     bthint2 = Hovertip(bt2, 'Вирахування процентів за весь період нарощення за складними відсотками')
     bt2.grid(row=0, column=2, padx=5, pady=5)
 
     separator1 = ttk.Separator(tab2, orient='vertical')
     separator1.grid(column=3, row=0, sticky='ns')
 
-    bt3 = Button(tab2, text='Нарощення за нс', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_three_page)
+    bt3 = Button(tab2, text='Нарощення за нс', image=icon1, compound=TOP, borderwidth=0, command=lambda: chapter_two_task_three_page(fr))
     bthint3 = Hovertip(bt3, 'Нарощення за номінальною ставкою j')
     bt3.grid(row=0, column=4, padx=5, pady=1)
 
     separator2 = ttk.Separator(tab2, orient='vertical')
     separator2.grid(column=5, row=0, sticky='ns')
 
-    bt4 = Button(tab2, text='Відповідний множник нарощення', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_four_page)
+    bt4 = Button(tab2, text='Відповідний множник нарощення', image=icon1, compound=TOP, borderwidth=0, command=lambda: chapter_two_task_four_page(fr))
     bthint4 = Hovertip(bt4, '')
     bt4.grid(row=0, column=6, padx=5, pady=1)
 
     separator3 = ttk.Separator(tab2, orient='vertical')
     separator3.grid(column=7, row=0, sticky='ns')
 
-    bt6 = Button(tab2, text='Ефективна % ставка', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_five_page)
+    bt6 = Button(tab2, text='Ефективна % ставка', image=icon1, compound=TOP, borderwidth=0, command=lambda: chapter_two_task_five_page(fr))
     bthint6 = Hovertip(bt6, 'Ефективна ставка відображає реальний відносний дохід отриманий за рік')
     bt6.grid(row=0, column=8, padx=5, pady=1)
 
@@ -299,28 +300,28 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     lbl1 = Label(tab2, text="2.1. Нарахування відсотків у користувацькому кредиті").grid(row=1, column=0, columnspan=9,
                                                                                          padx=0, pady=1)
 
-    bt7 = Button(tab2, text='Дисконтний множник', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_six_page)
+    bt7 = Button(tab2, text='Дисконтний множник', image=icon1, compound=TOP, borderwidth=0, command=lambda: chapter_two_task_six_page(fr))
     bthint7 = Hovertip(bt7, 'Як і у випадку використання простої відсоткової ставки, \nматематичне дисконтування за складною ставкою відсотків,тобто знаходження значенняP за \nвідомим значенням S , відбувається за формулою...')
     bt7.grid(row=0, column=10, padx=5, pady=5)
 
     separator6 = ttk.Separator(tab2, orient='vertical')
     separator6.grid(column=11, row=0, sticky='ns')
 
-    bt8 = Button(tab2, text='Дисконтний множник', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_seven_page)
+    bt8 = Button(tab2, text='Дисконтний множник', image=icon1, compound=TOP, borderwidth=0, command=lambda: chapter_two_task_seven_page(fr))
     bthint8 = Hovertip(bt8, 'У випадку періодичних нарахувань')
     bt8.grid(row=0, column=12, padx=5, pady=5)
 
     separator7 = ttk.Separator(tab2, orient='vertical')
     separator7.grid(column=13, row=0, sticky='ns')
 
-    bt9 = Button(tab2, text='Cкладна облікова ставка', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_eight_page)
+    bt9 = Button(tab2, text='Cкладна облікова ставка', image=icon1, compound=TOP, borderwidth=0, command=lambda: chapter_two_task_eight_page(fr))
     bthint9 = Hovertip(bt9, 'Банківський облік за складною обліковою ставкою проводять за розрахунковою формулою...')
     bt9.grid(row=0, column=14, padx=5, pady=1)
 
     separator8 = ttk.Separator(tab2, orient='vertical')
     separator8.grid(column=15, row=0, sticky='ns')
 
-    bt10 = Button(tab2, text='НРОС', image=icon1, compound=TOP, borderwidth=0, command=chapter_two_task_nine_page)
+    bt10 = Button(tab2, text='НРОС', image=icon1, compound=TOP, borderwidth=0, command=lambda: chapter_two_task_nine_page(fr))
     bthint10 = Hovertip(bt10, 'Номінальна річна облікова ставка - складна облікова ставка у випадку періодичних нарахувань')
     bt10.grid(row=0, column=16, padx=5, pady=5)
 
@@ -520,17 +521,24 @@ def template(nb,fr=None):    # таби з розділами та перехо�
     lbl1 = Label(tab4, text="4.2. Змінна сила росту").grid(row=1, column=8, columnspan=7, padx=0, pady=1)
 
     # tab7
-    bt1 = Button(tab7, text='Формула 1', image=icon1, compound=TOP, borderwidth=0,
-                 command=None)
-    bthint1 = Hovertip(bt1, 'умова')
+    bt1 = Button(tab7, text='Постійні внески у фонд', image=icon1, compound=TOP, borderwidth=0,
+                 command=lambda: chapter_seven_task_one_page(fr))
+    bthint1 = Hovertip(bt1, 'Розрахунок термінової виплати')
     bt1.grid(row=0, column=0, padx=5, pady=5, sticky='nsew')
 
     separator0 = ttk.Separator(tab7, orient='vertical')
     separator0.grid(column=1, row=0, sticky='ns')
 
-    bt2 = Button(tab7, text='Формула 2', image=icon1, compound=TOP, borderwidth=0,
-                 command=None)
-    bthint2 = Hovertip(bt2, 'умова')
+    bt2 = Button(tab7, text='Pентa постнумерандо', image=icon1, compound=TOP, borderwidth=0,
+                 command=lambda: chapter_seven_task_two_page(fr))
+    bthint2 = Hovertip(bt2, '''Клієнт взяв позику у  D грн. терміном на N років
+                під g річних. Для погашення даної заборгованості
+                створюється відповідний фонд, на вкладені у нього кошти
+                нараховуються відсотки за ставкою i річних. Визначити
+                величину термінової виплати, якщо фонд формується протягом
+                п’яти років, а внески у нього надходять вкінці кожного року
+                однаковими сумами у разі якщо б угодою передбачалося приєднання відсотків до
+                основної суми боргу''')
     bt2.grid(row=0, column=2, padx=5, pady=5, sticky='nsew')
 
     separator1 = ttk.Separator(tab7, orient='vertical')
@@ -538,17 +546,17 @@ def template(nb,fr=None):    # таби з розділами та перехо�
 
     lbl1 = Label(tab7, text="7.1. Нарощення за простими відсотковими ставками").grid(row=1, column=0, columnspan=3,
                                                                                      padx=0, pady=1)
-    bt3 = Button(tab7, text='Формула 3', image=icon1, compound=TOP, borderwidth=0,
-                 command=None)
-    bthint3 = Hovertip(bt3, 'умова')
+    bt3 = Button(tab7, text='План погашення заборгованості', image=icon1, compound=TOP, borderwidth=0,
+                 command=lambda: chapter_seven_task_three_page(fr))
+    bthint3 = Hovertip(bt3, ' Погашення основного боргу рівними терміновими виплатами')
     bt3.grid(row=0, column=4, padx=5, pady=1, sticky='nsew')
 
     separator2 = ttk.Separator(tab7, orient='vertical')
     separator2.grid(column=5, row=0, sticky='ns')
 
-    bt4 = Button(tab7, text='Формула 4', image=icon1, compound=TOP, borderwidth=0,
-                 command=None)
-    bthint4 = Hovertip(bt4, 'умова')
+    bt4 = Button(tab7, text='План погашення заборгованост', image=icon1, compound=TOP, borderwidth=0,
+                 command=lambda: chapter_seven_task_four_page(fr))
+    bthint4 = Hovertip(bt4, 'Погашення всього боргу однаковими терміновими виплатами')
     bt4.grid(row=0, column=6, padx=5, pady=1, sticky='nsew')
 
     separator3 = ttk.Separator(tab7, orient='vertical')
@@ -560,16 +568,18 @@ def template(nb,fr=None):    # таби з розділами та перехо�
                                                                                                       columnspan=3,
                                                                                                       padx=0,
                                                                                                       pady=1)
-    bt5 = Button(tab7, text='Формула 5', image=icon1, compound=TOP, borderwidth=0,
-                 command=None)
-    bthint5 = Hovertip(bt5, 'умова')
+    bt5 = Button(tab7, text='Умовна втрата для кредитора', image=icon1, compound=TOP, borderwidth=0,
+                 command=lambda: chapter_seven_task_five_page(fr))
+    bthint5 = Hovertip(bt5, 'Пільгові позики та кредити')
     bt5.grid(row=0, column=8, padx=5, pady=1, sticky='nsew')
 
     separator4 = ttk.Separator(tab7, orient='vertical')
     separator4.grid(column=9, row=0, sticky='ns')
 
-    bt6 = Button(tab7, text='Формула 6', image=icon1, compound=TOP, borderwidth=0, command=None)
-    bthint6 = Hovertip(bt6, 'умова')
+    bt6 = Button(tab7, text='Термінова виплата і величина несплаченого основного боргу', image=icon1,
+                 compound=TOP, borderwidth=0,
+                 command=lambda: chapter_seven_task_six_page(fr))
+    bthint6 = Hovertip(bt6, 'Пільгові позики та кредити')
     bt6.grid(row=0, column=10, padx=5, pady=1, sticky='nsew')
 
     separator5 = ttk.Separator(tab7, orient='vertical')
@@ -590,110 +600,3 @@ def chapter_one_task_one_page():
     click_frame=Frame(frame)
     click_frame.grid(row=0, column=0,padx=0)
     template(nb,click_frame)
-
-def chapter_two_task_one_page():
-    clear()
-    frame = Frame(root)
-    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
-    nb = ttk.Notebook(frame)
-    nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
-    # page
-    formula2_1(frame)
-
-
-def chapter_two_task_two_page():
-    clear()
-    frame = Frame(root)
-    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
-    nb = ttk.Notebook(frame)
-    nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
-    # page
-    formula2_2(frame)
-
-
-def chapter_two_task_three_page():
-    clear()
-    frame = Frame(root)
-    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
-    nb = ttk.Notebook(frame)
-    nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
-    # page
-    formula2_3(frame)
-
-
-def chapter_two_task_four_page():
-    clear()
-    frame = Frame(root)
-    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
-    nb = ttk.Notebook(frame)
-    nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
-    # page
-    formula2_4(frame)
-
-
-def chapter_two_task_five_page():
-    clear()
-    frame = Frame(root)
-    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
-    nb = ttk.Notebook(frame)
-    nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
-    # page
-    formula2_4(frame)
-
-
-def chapter_two_task_six_page():
-    clear()
-    frame = Frame(root)
-    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
-    nb = ttk.Notebook(frame)
-    nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
-    # page
-    formula2_6(frame)
-
-
-def chapter_two_task_seven_page():
-    clear()
-    frame = Frame(root)
-    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
-    nb = ttk.Notebook(frame)
-    nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
-    # page
-    formula2_7(frame)
-
-
-def chapter_two_task_eight_page():
-    clear()
-    frame = Frame(root)
-    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
-    nb = ttk.Notebook(frame)
-    nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
-    # page
-    formula2_8(frame)
-
-
-def chapter_two_task_nine_page():
-    clear()
-    frame = Frame(root)
-    frame.place(anchor='n', relx=0.5, rely=0, relheight=1, relwidth=1)
-    nb = ttk.Notebook(frame)
-    nb.grid(row=0, column=0, columnspan=5)
-    template(nb)
-
-    # page
-    formula2_9(frame)
