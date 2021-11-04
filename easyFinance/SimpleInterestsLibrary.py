@@ -1,3 +1,9 @@
+def money(func):
+    def wrapper(*args, **kwargs):
+        return_value = func(*args, **kwargs)
+        return '${:,.2f}'.format(return_value)
+    return wrapper
+
 def defaul_simple_rates(p,t,i,k):
     S=p*(1+i*t/k)
     return S
