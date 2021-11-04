@@ -152,7 +152,7 @@ def chapter_two_task_three_page(frame):
     lbl4 = Label(frame, text="Річна ставка складних відсотків j").grid(row=3, column=2, padx=0, pady=1, sticky='w')
     input4 = Entry(frame, textvariable=jvalue).grid(row=3, column=3, padx=0, pady=1, sticky='w')
     lbl3 = Label(frame, text="Kількість нарахувань у році m").grid(row=4, column=2, padx=0, pady=1, sticky='w')
-    input3 = Entry(frame, textvariable=nvalue).grid(row=4, column=3, padx=0, pady=1, sticky='w')
+    input3 = Entry(frame, textvariable=mvalue).grid(row=4, column=3, padx=0, pady=1, sticky='w')
 
     bt1 = Button(frame, text='Обчислити', command=calculate)
     bthint1 = Hovertip(bt1, 'умова')

@@ -46,7 +46,7 @@ def chapter_seven_task_one_page(frame):
 
     def calculate():
         sni_formula = ((one.get() - ((one.get() + ivalue.get()) ** (-nvalue.get()))) / ivalue.get()) * (
-                    (one.get() + ivalue.get()) ** nvalue.get())
+                (one.get() + ivalue.get()) ** nvalue.get())
         Y = round(Dvalue.get() * gvalue.get() + (Dvalue.get() / sni_formula), 4)
         lblres = Label(frame, text="Величина термінової виплати Y = {0} грн.".format(Y)).grid(
             row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
@@ -75,7 +75,7 @@ def chapter_seven_task_one_page(frame):
 
     def calculate1():
         sni_formula = ((one.get() - ((one.get() + ivalue.get()) ** (-nvalue.get()))) / ivalue.get()) * (
-                    (one.get() + ivalue.get()) ** nvalue.get())
+                (one.get() + ivalue.get()) ** nvalue.get())
         Y = round((Dvalue.get() * ((one.get() + gvalue.get()) ** nvalue.get())) / sni_formula, 4)
         lblres = Label(frame, text="Величина термінової виплати Y = {0} грн.".format(Y)).grid(
             row=7, column=3, columnspan=2, padx=0, pady=1, sticky='w')
@@ -86,7 +86,6 @@ def chapter_seven_task_one_page(frame):
 зберігаються. Нехай внески у фонд надходять тільки останні
 чотири роки''')
     bt2.grid(row=5, column=3, padx=5, pady=5)
-
 
 
 def chapter_seven_task_two_page(frame):
@@ -130,7 +129,6 @@ def chapter_seven_task_two_page(frame):
     one = DoubleVar()
     one.set(1.0)
 
-
     lbl2 = Label(frame, text="Сума позики D").grid(row=0, column=2, padx=0, pady=1, sticky='w')
     input2 = Entry(frame, textvariable=Dvalue).grid(row=0, column=3, padx=0, pady=1, sticky='w')
 
@@ -140,7 +138,6 @@ def chapter_seven_task_two_page(frame):
     input4 = Entry(frame, textvariable=gvalue).grid(row=2, column=3, padx=0, pady=1, sticky='w')
     lbl5 = Label(frame, text="Відсоткова ставка погашення боргу i").grid(row=4, column=2, padx=0, pady=1, sticky='w')
     input5 = Entry(frame, textvariable=ivalue).grid(row=4, column=3, padx=0, pady=1, sticky='w')
-
 
     separator0 = ttk.Separator(frame).grid(column=2, row=6, columnspan=2, sticky='ns')
 
@@ -206,27 +203,30 @@ def chapter_seven_task_three_page(frame):
         d = Dvalue.get() / nvalue.get()
         lblres = Label(frame, text="Величина, що йде на погашення основного боргу d = {0} грн.".format(d)).grid(
             row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
-        Title = ['Рік', 'Залишок боргу на початок року', 'Витрати за позикою',  'Виплати боргу', 'Проценти']
-        for row in range(8, int(nvalue.get())+9):
+        Title = ['Рік', 'Залишок боргу на початок року', 'Витрати за позикою', 'Виплати боргу', 'Проценти']
+        for row in range(8, int(nvalue.get()) + 9):
             for col in range(2, 7):
                 if row == 8:
-                    label = Label(frame, text=Title[col-2], bg="white", padx=3, pady=3)
+                    label = Label(frame, text=Title[col - 2], bg="white", padx=3, pady=3)
                     label.grid(row=row, column=col, sticky="nsew")
                 else:
                     if col == 2:
                         label = Label(frame, text=row - 8, bg="white", padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     elif col == 3:
-                        label = Label(frame, text="{0} грн".format(int(Dvalue.get()-(d*(row-9)))), bg="white", padx=3, pady=3)
+                        label = Label(frame, text="{0} грн".format(int(Dvalue.get() - (d * (row - 9)))), bg="white",
+                                      padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     elif col == 4:
-                        label = Label(frame, text=int(((Dvalue.get()-(d*(row-9)))*0.1)+d), bg="white", padx=3, pady=3)
+                        label = Label(frame, text=int(((Dvalue.get() - (d * (row - 9))) * 0.1) + d), bg="white", padx=3,
+                                      pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     elif col == 5:
                         label = Label(frame, text=int(d), bg="white", padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     if col == 6:
-                        label = Label(frame, text=int((Dvalue.get()-(d*(row-9)))*0.1), bg="white", padx=3, pady=3)
+                        label = Label(frame, text=int((Dvalue.get() - (d * (row - 9))) * 0.1), bg="white", padx=3,
+                                      pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     else:
                         frame.grid_columnconfigure(col, weight=1)
@@ -238,7 +238,6 @@ def chapter_seven_task_three_page(frame):
     input3 = Entry(frame, textvariable=nvalue).grid(row=1, column=3, padx=0, pady=1, sticky='w')
     lbl4 = Label(frame, text="Відсоткова ставка g").grid(row=2, column=2, padx=0, pady=1, sticky='w')
     input4 = Entry(frame, textvariable=gvalue).grid(row=2, column=3, padx=0, pady=1, sticky='w')
-
 
     bt1 = Button(frame, text='Обчислити', command=calculate)
     bthint1 = Hovertip(bt1, '''Заборгованість у D грн. потрібно виплатити
@@ -284,23 +283,23 @@ def chapter_seven_task_four_page(frame):
 
     def calculate():
         ani_formula = ((one.get() - ((one.get() + gvalue.get()) ** (-nvalue.get()))) / gvalue.get())
-        Y = round(Dvalue.get()/ ani_formula, 4)
+        Y = round(Dvalue.get() / ani_formula, 4)
         lblres = Label(frame, text="Величина, що йде на погашення основного боргу Y = {0} грн.".format(Y)).grid(
             row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
         Title = ['Рік', 'Залишок боргу на початок року', 'Термінові виплати', 'Проценти', 'Погашення основного боргу']
-        debt = [Y/((1+gvalue.get())**(nvalue.get()-i)) for i in range(int(nvalue.get()+1))]
-        for row in range(8, int(nvalue.get()+1) + 9):
+        debt = [Y / ((1 + gvalue.get()) ** (nvalue.get() - i)) for i in range(int(nvalue.get() + 1))]
+        for row in range(8, int(nvalue.get() + 1) + 9):
             for col in range(2, 7):
                 if row == 8:
                     label = Label(frame, text=Title[col - 2], bg="white", padx=3, pady=3)
                     label.grid(row=row, column=col, sticky="nsew")
-                elif row == int(nvalue.get()+1) + 8 and (col == 3 or col == 4 or col == 5):
+                elif row == int(nvalue.get() + 1) + 8 and (col == 3 or col == 4 or col == 5):
                     label = Label(frame, text=0, bg="white", padx=3, pady=3)
                     label.grid(row=row, column=col, sticky="nsew")
                 elif (row == 9) and col == 3:
                     label = Label(frame, text="{0} грн".format(Dvalue.get()), bg="white", padx=3, pady=3)
                     label.grid(row=row, column=col, sticky="nsew")
-                elif (row == int(nvalue.get()+1) + 8) and col == 6:
+                elif (row == int(nvalue.get() + 1) + 8) and col == 6:
                     label = Label(frame, text="{0} грн".format(Dvalue.get()), bg="white", padx=3, pady=3)
                     label.grid(row=row, column=col, sticky="nsew")
                 else:
@@ -312,10 +311,11 @@ def chapter_seven_task_four_page(frame):
                                       padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     elif col == 4:
-                        label = Label(frame, text=Y*0.01, bg="white", padx=3, pady=3)
+                        label = Label(frame, text=Y * 0.01, bg="white", padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     elif col == 5:
-                        label = Label(frame, text=(Dvalue.get() - debt[row - 10])*gvalue.get(), bg="white", padx=3, pady=3)
+                        label = Label(frame, text=(Dvalue.get() - debt[row - 10]) * gvalue.get(), bg="white", padx=3,
+                                      pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     if col == 6:
                         label = Label(frame, text=debt[row - 9], bg="white", padx=3,
@@ -370,8 +370,8 @@ i% річних. Визначити умовну втрату для креди�
     def calculate():
         ang_formula = ((one.get() - ((one.get() + gvalue.get()) ** (-nvalue.get()))) / gvalue.get())
         ani_formula = ((one.get() - ((one.get() + ivalue.get()) ** (-nvalue.get()))) / ivalue.get())
-        w = ani_formula/ang_formula
-        W = round(w*Dvalue.get(), 3)
+        w = ani_formula / ang_formula
+        W = round(w * Dvalue.get(), 3)
         lblres = Label(frame, text="Умовна втрата для кредитора W = {0} грн.".format(W)).grid(
             row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
@@ -381,7 +381,8 @@ i% річних. Визначити умовну втрату для креди�
     input3 = Entry(frame, textvariable=nvalue).grid(row=1, column=3, padx=0, pady=1, sticky='w')
     lbl4 = Label(frame, text="Відсоткова ставка g").grid(row=2, column=2, padx=0, pady=1, sticky='w')
     input4 = Entry(frame, textvariable=gvalue).grid(row=2, column=3, padx=0, pady=1, sticky='w')
-    lbl5 = Label(frame, text="Ринкова відсоткова ставка погашення боргу i").grid(row=4, column=2, padx=0, pady=1, sticky='w')
+    lbl5 = Label(frame, text="Ринкова відсоткова ставка погашення боргу i").grid(row=4, column=2, padx=0, pady=1,
+                                                                                 sticky='w')
     input5 = Entry(frame, textvariable=ivalue).grid(row=4, column=3, padx=0, pady=1, sticky='w')
 
     bt1 = Button(frame, text='Обчислити', command=calculate)
@@ -403,38 +404,46 @@ def chapter_seven_task_six_page(frame):
     frame_inside.columnconfigure(1, minsize=10)
     frame_inside.columnconfigure(2, minsize=200)
     frame_inside.columnconfigure(3, minsize=100)
-    frame_inside.columnconfigure(4, minsize=850)
+    frame_inside.columnconfigure(4, minsize=100)
+    frame_inside.columnconfigure(5, minsize=100)
+    frame_inside.columnconfigure(6, minsize=650)
     description = """
 Знайти термінову виплату і величину
-несплаченого основного боргу на початок n-го року погашення.
+несплаченого основного боргу на початок t-го року погашення.
         """
     lbl1 = Label(frame, text=description, font="Arial 8", justify=LEFT).grid(row=0, column=0, rowspan=9, padx=0, pady=1)
     separatordecription = ttk.Separator(frame, orient='vertical').grid(column=1, row=0, rowspan=9, sticky='ns')
 
     Dvalue = DoubleVar()
     nvalue = DoubleVar()
+    tvalue = DoubleVar()
     gvalue = DoubleVar()
-    ivalue = DoubleVar()
+    mvalue = DoubleVar()
     one = DoubleVar()
     one.set(1.0)
 
     def calculate():
-        ang_formula = ((one.get() - ((one.get() + gvalue.get()) ** (-nvalue.get()))) / gvalue.get())
-        ani_formula = ((one.get() - ((one.get() + ivalue.get()) ** (-nvalue.get()))) / ivalue.get())
-        w = ani_formula / ang_formula
-        W = round(w * Dvalue.get(), 3)
-        lblres = Label(frame, text="Умовна втрата для кредитора W = {0} грн.".format(W)).grid(
+        Y = round((Dvalue.get() * gvalue.get() / mvalue.get() * (
+                    (one.get() + gvalue.get() / mvalue.get()) ** (mvalue.get() * nvalue.get()))) / (
+                              ((one.get() + gvalue.get() / mvalue.get()) ** (mvalue.get() * nvalue.get())) - 1), 3)
+        t = mvalue.get()*(nvalue.get()-tvalue.get()-one.get())-one.get()
+        S = round(Dvalue.get()*((((one.get() + gvalue.get() / mvalue.get()) ** (mvalue.get() * nvalue.get())) - ((one.get() + gvalue.get() / mvalue.get()) ** t)) / (
+                    (one.get() + gvalue.get() / mvalue.get()) ** (mvalue.get() * nvalue.get()) - 1)), 2)
+        lblres = Label(frame,
+                       text="Термінова виплата і величина несплаченого основного боргу S = {0} грн.".format(S)).grid(
             row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Kредит D").grid(row=0, column=2, padx=0, pady=1, sticky='w')
     input2 = Entry(frame, textvariable=Dvalue).grid(row=0, column=3, padx=0, pady=1, sticky='w')
-    lbl3 = Label(frame, text="Тривалість позики n").grid(row=1, column=2, padx=0, pady=1, sticky='w')
+    lbl3 = Label(frame, text="Kількість років кредиту n").grid(row=1, column=2, padx=0, pady=1, sticky='w')
     input3 = Entry(frame, textvariable=nvalue).grid(row=1, column=3, padx=0, pady=1, sticky='w')
+    lbl6 = Label(frame, text="t").grid(row=1, column=4, padx=0, pady=1, sticky='w')
+    input6 = Entry(frame, textvariable=tvalue).grid(row=1, column=5, padx=0, pady=1, sticky='w')
     lbl4 = Label(frame, text="Відсоткова ставка g").grid(row=2, column=2, padx=0, pady=1, sticky='w')
     input4 = Entry(frame, textvariable=gvalue).grid(row=2, column=3, padx=0, pady=1, sticky='w')
-    lbl5 = Label(frame, text="Ринкова відсоткова ставка погашення боргу i").grid(row=4, column=2, padx=0, pady=1,
-                                                                                 sticky='w')
-    input5 = Entry(frame, textvariable=ivalue).grid(row=4, column=3, padx=0, pady=1, sticky='w')
+    lbl5 = Label(frame, text="Kількість періодів нарахування відсотків у році і кількість виплат у році m").grid(
+        row=4, column=2, padx=0, pady=1, sticky='w')
+    input5 = Entry(frame, textvariable=mvalue).grid(row=4, column=3, padx=0, pady=1, sticky='w')
 
     bt1 = Button(frame, text='Обчислити', command=calculate)
     bt1.grid(row=5, column=2, padx=5, pady=5)
