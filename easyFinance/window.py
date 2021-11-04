@@ -12,7 +12,7 @@ root = Tk()
 root.title("easyFinance")
 root.iconbitmap("icons/program.ico")
 root.wm_geometry("1460x600+0+0")  # розмір = ширина х висота + початкова_точка_х + початкова_точка_у //583x683
-root.configure(bg=background_color)
+root.configure(bg="#f0f0f0")
 root.minsize(583, 600)
 
 # іконки для панелі управління (sizex32)

@@ -2,6 +2,7 @@ from libs import *
 
 
 def formula2_1(frame):
+    clear_frame(frame)
     frame.columnconfigure(0, minsize=300)
     frame.columnconfigure(1, minsize=10)
     frame.columnconfigure(2, minsize=200)

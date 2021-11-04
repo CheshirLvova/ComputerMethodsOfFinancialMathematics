@@ -35,3 +35,6 @@ from idlelib.tooltip import Hovertip
 
 # для можливості обирати дати з календаря
 from tkcalendar import Calendar 
+def clear_frame(frame):
+   for x in frame.winfo_children():
+      x.destroy()
