@@ -588,9 +588,7 @@ def chapter_one_task_one_page():
     nb.grid(row=0, column=0, columnspan=5)
     # main_page
     click_frame=Frame(frame)
-    click_frame.grid(row=1, column=0,padx=0)
-    lb=Label(click_frame,text="easyFinance")
-    lb.pack()
+    click_frame.grid(row=0, column=0,padx=0)
     template(nb,click_frame)
 
 def chapter_two_task_one_page():
