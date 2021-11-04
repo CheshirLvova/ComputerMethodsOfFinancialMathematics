@@ -60,7 +60,6 @@ def defaul_simple_rates(frame):
       i=float(interest.get())
       s= SIL.defaul_simple_rates(p,t,i,k)
       res_var.set("Сума боргу: "+str(s))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -147,7 +146,6 @@ def changing_simple_rates(frame):
       p=float(capital.get())
       s= SIL.changing_simple_rates(p,t,i,k)
       res_var.set("Сума боргу: "+str(s))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -235,7 +233,6 @@ def reinvestment_simple_rates(frame):
       p=float(capital.get())
       s= SIL.reinvestment_simple_rates(p,t,i,k)
       res_var.set("Сума боргу: "+str(s))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -321,7 +318,6 @@ def simple_rates_for_time_changing_sums(frame):
       i=float(interest.get())
       s= SIL.simple_rates_for_time_changing_sums(r,t,i,k)
       res_var.set("Нарахована сума: "+str(s))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -386,10 +382,9 @@ def single_time_payment(frame):
       i=float(interest.get())
       m=float(amount.get())
       s= SIL.defaul_simple_rates(p,t,i,k)
-      print(s)
+
       r=SIL.single_time_payment(s,t/k,m)
       res_var.set("Сума разової виплати: "+str(r))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -448,7 +443,6 @@ def discount_prise(frame):
       i=float(interest.get())
       p= SIL.discount_prise(s,t,i,k)
       res_var.set("Дисконтована вартість: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -506,7 +500,6 @@ def discount(frame):
       i=float(interest.get())
       D= SIL.discount(t,k,p,i)
       res_var.set("Дисконт: "+str(D))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -564,7 +557,6 @@ def bank_accounting_rate(frame):
       s=float(accrual.get())
       d= SIL.bank_accounting_rate(s,p,t,k)
       res_var.set("Дисконтний множник: "+str(d))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -622,7 +614,6 @@ def bank_accounting(frame):
       s=float(accrual.get())
       p= SIL.bank_accounting(s,d,t,k)
       res_var.set("Сума боргу: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -664,7 +655,6 @@ def get_n_by_SPi(frame):
 
       p= SIFP.get_n_by_SPi(s,p,i)
       res_var.set("Кількість років: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -706,7 +696,6 @@ def get_n_by_SPd(frame):
 
       p= SIFP.get_n_by_SPd(s,p,d)
       res_var.set("Кількість років: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -756,7 +745,6 @@ def get_t_by_SPi(frame):
 
       p= SIFP.get_t_by_SPi(s,p,i,k)
       res_var.set("Кількість днів: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -806,7 +794,6 @@ def get_t_by_SPd(frame):
 
       p= SIFP.get_t_by_SPd(s,p,d,k)
       res_var.set("Кількість днів: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -848,7 +835,6 @@ def get_i_by_SPn(frame):
 
       p= SIFP.get_i_by_SPn(s,p,n)
       res_var.set("Відсоткова ставка: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -898,7 +884,6 @@ def get_i_by_SPt(frame):
 
       p= SIFP.get_i_by_SPt(s,p,t,k)
       res_var.set("Відсоткова ставка: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -940,7 +925,6 @@ def get_d_by_SPn(frame):
 
       p= SIFP.get_d_by_SPn(s,p,n)
       res_var.set("Дисконт: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -990,7 +974,6 @@ def get_d_by_SPt(frame):
 
       p= SIFP.get_d_by_SPt(s,p,t,k)
       res_var.set("дисконт "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1032,7 +1015,6 @@ def Сget_n_by_SPi(frame):
 
       p= CIFP.get_n_by_SPi(s,p,i)
       res_var.set("Кількість років: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1074,7 +1056,6 @@ def Cget_n_by_SPd(frame):
 
       p= CIFP.get_n_by_SPi(s,p,d)
       res_var.set("Кількість років: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1124,7 +1105,6 @@ def Cget_n_by_SPmj(frame):
 
       p= CIFP.get_n_by_SPmj(s,p,m,j)
       res_var.set("Кількість днів "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1174,7 +1154,6 @@ def Cget_n_by_SPmf(frame):
 
       p= CIFP.get_n_by_SPmf(s,p,m,f)
       res_var.set("Кількість днів "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1216,7 +1195,6 @@ def Cget_i_by_SPn(frame):
 
       p= CIFP.get_i_by_SPn(s,p,N)
       res_var.set("Відсоткова ставка: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1258,7 +1236,6 @@ def Cget_d_by_SPn(frame):
 
       p= CIFP.get_d_by_SPn(s,p,N)
       res_var.set("Дисконт: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1308,7 +1285,6 @@ def Cget_j_by_SPmn(frame):
 
       p= CIFP.get_j_by_SPmn(s,p,m,n)
       res_var.set("Відсоткова ставка: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1358,7 +1334,6 @@ def Cget_f_by_SPmn(frame):
 
       p= CIFP.get_j_by_SPmn(s,p,m,n)
       res_var.set("Номінальна ставка: "+str(p))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1538,7 +1513,6 @@ def AccLinear_rate_power(frame):
       aspf= CIP.linear_rate_power(asp,a,n)
       s=CIP.accrued_amount(p,aspf)
       res_var.set("Нарахована сума: "+str(s))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1589,7 +1563,6 @@ def AccExp_rate_power(frame):
       aspf= CIP.exp_rate_power(asp,a,n)
       s=CIP.accrued_amount(p,aspf)
       res_var.set("Нарахована сума: "+str(s))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1640,7 +1613,6 @@ def CosLinear_rate_power(frame):
       aspf= CIP.linear_rate_power(asp,a,n)
       s=CIP.cost(p,aspf)
       res_var.set("Сума виплат: "+str(s))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
@@ -1691,7 +1663,6 @@ def CosExp_rate_power(frame):
       aspf= CIP.exp_rate_power(asp,a,n)
       s=CIP.cost(p,aspf)
       res_var.set("Сума виплат: "+str(s))
-      print(s)
    
    calc_btn=Button(frame,text="Розрахувати", command=clak)
    
