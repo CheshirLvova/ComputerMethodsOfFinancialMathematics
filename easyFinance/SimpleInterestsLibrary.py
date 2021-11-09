@@ -6,38 +6,39 @@ def money(func):
 
 def defaul_simple_rates(p,t,i,k):
     S=p*(1+i*t/k)
-    return S
+    return round(S,2)
 def changing_simple_rates(p,t,i,k):
     s=0
-    for ti,ki,ii in zip(t,i,k):
+    for ti,ii,ki in zip(t,i,k):
         s+=ti*ii/ki
-    S=p*s
-    return S
+    S=p+p*s
+    return round(S,2)
 def reinvestment_simple_rates(p,t,i,k):
     prod=1
     for ti,ki,ii in zip(t,k,i):
         prod*=1+ti*ii/ki
     S=p*prod
-    return S
+    return round(S,2)
 def simple_rates_for_time_changing_sums(r,t,i,k):
     s=0
     for ri,ti in zip(r,t):
         s+=ri*ti
-    I=s*i/k
-    return I
+    mn=round(k/i)
+    I=s/mn
+    return round(I,2)
 def single_time_payment(s,n,m):
     R=s/n/m
-    return R
+    return round(R,2)
 def discount_prise(s,i,t,k):
     P=s/(1+i*t/k)
-    return P
+    return round(P,2)
 def discount(t,k,p,i):
     n=t/k
     D=n*p*i
-    return D
+    return round(D,2)
 def bank_accounting_rate(s,p,t,k):
     d=(s-p)/(s*t/k)
-    return d
+    return round(d,2)
 def bank_accounting(s,d,t,k):
     P=s-s*d*t/k
-    return P
+    return round(P,2)

@@ -9,9 +9,9 @@ def exp_rate_power(sigma,a,n):
     return apst
 
 def accrued_amount(P,apst):
-    S=P*exp(apst)
-    return S
+    S=P*2.7**(apst)
+    return round(S,2)
 
 def cost(S,apst):
-    P=S/exp(apst)
-    return P
+    P=S/(2.7**(apst))
+    return round(P,2)
