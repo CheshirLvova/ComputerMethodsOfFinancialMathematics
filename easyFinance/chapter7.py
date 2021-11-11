@@ -186,9 +186,10 @@ def chapter_seven_task_three_page(frame):
             обслуговування боргу (термінова виплата) становлять
             Y = I + R .
 
-            Припустимо, що фонд потрібно сформувати за N років. У
-            такому випадку внески у фонд утворюють постійну ренту. Нехай
-            мова йтиме про ренту постнумерандо. Тоді R = D/sₙᵢ
+            Заборгованість у D грн. потрібно виплатити
+            впродовж n років однаковими щорічними виплатами.
+            Побудувати план погашення заборгованості за умови, що за
+            позику виплачується g% річних, а виплати постнумерандо.
     """
     lbl1 = Label(frame, text=description, font="Arial 8", justify=LEFT).grid(row=0, column=0, rowspan=9, padx=0, pady=1)
     separatordecription = ttk.Separator(frame, orient='vertical').grid(column=1, row=0, rowspan=9, sticky='ns')
