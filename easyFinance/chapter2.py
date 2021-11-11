@@ -53,8 +53,8 @@ def chapter_two_task_one_page(frame):
             if ivalue.get() > 1:
                 i.set(ivalue.get() / 100)
             else:
-                i.set(ivalue.get())
-            S = round(Pvalue.get() * ((1 + i.get()) ** nvalue.get()), 4)
+                i.set(fabs(ivalue.get()))
+            S = round(fabs(Pvalue.get()) * ((1 + i.get()) ** fabs(nvalue.get())), 4)
             lblres = Label(frame, text="Нарощена сума (з відсотками) на кінець терміну S = {0}".format(S)).grid(
                 row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
         except TclError:
@@ -102,9 +102,20 @@ def chapter_two_task_two_page(frame):
     ivalue = DoubleVar()
 
     def calculate():
-        I = round((Pvalue.get() * ((1 + ivalue.get()) ** nvalue.get())) - Pvalue.get(), 4)
-        lblres = Label(frame, text="Проценти за весь період нарощення за складними відсотками I = {0}".format(I)).grid(
-            row=6, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            if ivalue.get() > 1:
+                i.set(ivalue.get() / 100)
+            else:
+                i.set(fabs(ivalue.get()))
+            I = round((fabs(Pvalue.get()) * ((1 + i.get()) ** fabs(nvalue.get()))) - fabs(Pvalue.get()), 4)
+            lblres = Label(frame, text="Проценти за весь період нарощення за складними відсотками I = {0}".
+                           format(I)).grid(row=6, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except TclError:
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=6, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Початкова величина боргу P").grid(row=0, column=2, padx=0, pady=1, sticky='w')
     input1 = Entry(frame, textvariable=Pvalue).grid(row=0, column=3, padx=0, pady=1, sticky='w')
@@ -152,9 +163,20 @@ def chapter_two_task_three_page(frame):
     mvalue = DoubleVar()
 
     def calculate():
-        S = round(Pvalue.get() * ((1 + (jvalue.get() / mvalue.get())) ** (mvalue.get() - nvalue.get())), 4)
-        lblres = Label(frame, text="Нарощена сума  за номінальною ставкою {0} % на кінець терміну S = {1}".format(
-            jvalue.get(), S)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            if jvalue.get() > 1:
+                i.set(jvalue.get() / 100)
+            else:
+                i.set(fabs(jvalue.get()))
+            S = round(fabs(Pvalue.get()) * ((1 + (i.get() / fabs(mvalue.get()))) ** (fabs(mvalue.get()) - fabs(nvalue.get()))), 4)
+            lblres = Label(frame, text="Нарощена сума  за номінальною ставкою {0} % на кінець терміну S = {1}".format(
+                i.get(), S)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except TclError:
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Початкова величина боргу P").grid(row=1, column=2, padx=0, pady=1, sticky='w')
     input1 = Entry(frame, textvariable=Pvalue).grid(row=1, column=3, padx=0, pady=1, sticky='w')
@@ -205,10 +227,21 @@ def chapter_two_task_four_page(frame):
     mvalue = DoubleVar()
 
     def calculate():
-        i = round(((1 + jvalue.get() / mvalue.get()) ** mvalue.get()) - 1, 4)
-        j = round(mvalue.get() * ((1 + i) ** (1 / mvalue.get()) - 1), 4)
-        lblres = Label(frame, text="Величина номінальної ставки {0} = {1}%".format(
-            jvalue.get(), j)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            jv = DoubleVar()
+            if jvalue.get() > 1:
+                jv.set(jvalue.get() / 100)
+            else:
+                jv.set(fabs(jvalue.get()))
+            i = round(((1 + jv.get() / fabs(mvalue.get())) ** fabs(mvalue.get())) - 1, 4)
+            j = round(fabs(mvalue.get()) * ((1 + i) ** (1 / fabs(mvalue.get())) - 1), 4)
+            lblres = Label(frame, text="Величина номінальної ставки {0} = {1}%".format(
+                jv.get(), j)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except TclError:
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl4 = Label(frame, text="Величина номінальної ставки j").grid(row=3, column=2, padx=0, pady=1, sticky='w')
     input4 = Entry(frame, textvariable=jvalue).grid(row=3, column=3, padx=0, pady=1, sticky='w')
@@ -227,7 +260,6 @@ def chapter_two_task_five_page(frame):
     clear_frame(frame)
     frame.grid(row=1, column=0)
     frame_inside = Frame(frame)
-
 
     # page
     frame_inside.columnconfigure(0, minsize=300)
@@ -258,10 +290,21 @@ def chapter_two_task_five_page(frame):
     mvalue = DoubleVar()
 
     def calculate():
-        i = round(((1 + jvalue.get() / mvalue.get()) ** mvalue.get()) - 1, 4)
-        j = round(mvalue.get() * ((1 + i) ** (1 / mvalue.get()) - 1), 4)
-        lblres = Label(frame, text="Величина номінальної ставки {0} = {1}%".format(
-            jvalue.get(), j)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            jv = DoubleVar()
+            if jvalue.get() > 1:
+                jv.set(jvalue.get() / 100)
+            else:
+                jv.set(fabs(jvalue.get()))
+            i = round(((1 + jv.get() / fabs(mvalue.get())) ** fabs(mvalue.get())) - 1, 4)
+            j = round(fabs(mvalue.get()) * ((1 + i) ** (1 / fabs(mvalue.get())) - 1), 4)
+            lblres = Label(frame, text="Величина номінальної ставки {0} = {1}%".format(
+                jv.get(), j)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except TclError:
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl4 = Label(frame, text="Величина номінальної ставки j").grid(row=3, column=2, padx=0, pady=1, sticky='w')
     input4 = Entry(frame, textvariable=jvalue).grid(row=3, column=3, padx=0, pady=1, sticky='w')
@@ -304,9 +347,20 @@ def chapter_two_task_six_page(frame):
     mvalue = DoubleVar()
 
     def calculate():
-        P = round((Svalue.get() / ((1 + ivalue.get()) ** nvalue.get())), 4)
-        lblres = Label(frame, text="Дисконт суми {0} = {1}%".format(
-            Svalue.get(), P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            if ivalue.get() > 1:
+                i.set(ivalue.get() / 100)
+            else:
+                i.set(fabs(ivalue.get()))
+            P = round((fabs(Svalue.get()) / ((1 + i.get()) ** fabs(nvalue.get()))), 4)
+            lblres = Label(frame, text="Дисконт суми {0} = {1}%".format(
+                fabs(Svalue.get()), P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except TclError:
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Складна відсоткова ставка S").grid(row=1, column=2, padx=0, pady=1, sticky='w')
     input1 = Entry(frame, textvariable=Svalue).grid(row=1, column=3, padx=0, pady=1, sticky='w')
@@ -348,9 +402,20 @@ def chapter_two_task_seven_page(frame):
     mvalue = DoubleVar()
 
     def calculate():
-        P = round((Svalue.get() / ((1 + ivalue.get() / mvalue.get()) ** (nvalue.get() * mvalue.get()))), 4)
-        lblres = Label(frame, text="Дисконт суми {0} = {1} (D = S - P)".format(
-            Svalue.get(), Svalue.get() - P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            if ivalue.get() > 1:
+                i.set(ivalue.get() / 100)
+            else:
+                i.set(fabs(ivalue.get()))
+            P = round((fabs(Svalue.get()) / ((1 + i.get() / fabs(mvalue.get())) ** (fabs(nvalue.get()) * fabs(mvalue.get())))), 4)
+            lblres = Label(frame, text="Дисконт суми {0} = {1} (D = S - P)".format(
+                fabs(Svalue.get()), fabs(Svalue.get()) - P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except TclError:
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Складна відсоткова ставка S").grid(row=1, column=2, padx=0, pady=1, sticky='w')
     input1 = Entry(frame, textvariable=Svalue).grid(row=1, column=3, padx=0, pady=1, sticky='w')
@@ -395,9 +460,20 @@ def chapter_two_task_eight_page(frame):
     dvalue = DoubleVar()
 
     def calculate():
-        P = round(Svalue.get() * ((1 - dvalue.get()) ** nvalue.get()), 4)
-        lblres = Label(frame, text="сучасна (теперішня) сума боргу = {0}".format(
-            P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            if dvalue.get() > 1:
+                i.set(dvalue.get() / 100)
+            else:
+                i.set(fabs(dvalue.get()))
+            P = round(fabs(Svalue.get()) * ((1 - i.get()) ** fabs(nvalue.get())), 4)
+            lblres = Label(frame, text="сучасна (теперішня) сума боргу = {0}".format(
+                P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except TclError:
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Майбутня сума боргу S").grid(row=1, column=2, padx=0, pady=1, sticky='w')
     input1 = Entry(frame, textvariable=Svalue).grid(row=1, column=3, padx=0, pady=1, sticky='w')
@@ -440,9 +516,20 @@ def chapter_two_task_nine_page(frame):
     fvalue = DoubleVar()
 
     def calculate():
-        P = round(Svalue.get() * ((1 - fvalue.get() / mvalue.get()) ** (mvalue.get() * nvalue.get())), 4)
-        lblres = Label(frame, text="сучасна (теперішня) сума боргу = {0}".format(
-            P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            if fvalue.get() > 1:
+                i.set(fvalue.get() / 100)
+            else:
+                i.set(fabs(fvalue.get()))
+            P = round(fabs(Svalue.get()) * ((1 - i.get() / fabs(mvalue.get())) ** (fabs(mvalue.get()) * fabs(nvalue.get()))), 4)
+            lblres = Label(frame, text="сучасна (теперішня) сума боргу = {0}".format(
+                P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except TclError:
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Майбутня сума боргу S").grid(row=1, column=2, padx=0, pady=1, sticky='w')
     input1 = Entry(frame, textvariable=Svalue).grid(row=1, column=3, padx=0, pady=1, sticky='w')
