@@ -102,10 +102,15 @@ def changing_simple_rates(frame):
    capital=DoubleVar()
    capital_entry=Entry(input_frame, width = 15, textvariable = capital)
    capital_entry.grid(row=1,column=1)
-   periods_var=StringVar(value="")
-   periods_label=Label(frame,textvariable=periods_var)
    t=[]
    i=[]
+   table=Frame(frame)
+   label = Label(table, text="початок", bg="white", padx=3, pady=3)
+   label.grid(row=0, column=0, sticky="nsew")
+   label = Label(table, text="кінець", bg="white", padx=3, pady=3)
+   label.grid(row=0, column=1, sticky="nsew")
+   label = Label(table, text="відсоткова ставка", bg="white", padx=3, pady=3)
+   label.grid(row=0, column=2, sticky="nsew")
    def add_period():
       f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
       l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
@@ -113,13 +118,19 @@ def changing_simple_rates(frame):
       t.append(ti)
       ii=float(interest.get())
       i.append(ii)
-      periods_var.set(periods_var.get()+"\n"+first_day.get_date()+" "+last_day.get_date()+" "+str(ii))
+      for r in range(len(t)):
+            label = Label(table, text=f_day.date(), bg="white", padx=3, pady=3)
+            label.grid(row=r+1, column=0, sticky="nsew")
+            label = Label(table, text=l_day.date(), bg="white", padx=3, pady=3)
+            label.grid(row=r+1, column=1, sticky="nsew")
+            label = Label(table, text=i[r], bg="white", padx=3, pady=3)
+            label.grid(row=r+1, column=2, sticky="nsew")
       
    def del_period():
       try:
-         datins=periods_var.get().split("\n")
-         del(datins[-1])
-         periods_var.set("\n".join(datins))
+         for lable in table.grid_slaves():
+            if int(lable.grid_info()["row"]) ==len(t):
+               lable.grid_forget()
          del(t[-1])
          del(i[-1])
       except:
@@ -130,7 +141,7 @@ def changing_simple_rates(frame):
    del_period_btn=Button(input_frame,text="Видалити період",command=del_period)
    del_period_btn.grid(row=1,column=2)
    input_frame.pack(side=LEFT)
-   periods_label.pack(side=LEFT)
+   table.pack(side=LEFT,anchor=N)
    
    res_var=StringVar(value="")
    res_label=Label(frame,textvariable=res_var)
@@ -150,7 +161,7 @@ def changing_simple_rates(frame):
    
    calc_btn.pack(side=LEFT)
    res_label.pack(side=LEFT)
-
+   
 def reinvestment_simple_rates(frame):
 
    clear_frame(frame)
@@ -188,10 +199,15 @@ def reinvestment_simple_rates(frame):
    capital=DoubleVar()
    capital_entry=Entry(input_frame, width = 15, textvariable = capital)
    capital_entry.grid(row=1,column=1)
-   periods_var=StringVar(value="")
-   periods_label=Label(frame,textvariable=periods_var)
    t=[]
    i=[]
+   table=Frame(frame)
+   label = Label(table, text="початок", bg="white", padx=3, pady=3)
+   label.grid(row=0, column=0, sticky="nsew")
+   label = Label(table, text="кінець", bg="white", padx=3, pady=3)
+   label.grid(row=0, column=1, sticky="nsew")
+   label = Label(table, text="відсоткова ставка", bg="white", padx=3, pady=3)
+   label.grid(row=0, column=2, sticky="nsew")
    def add_period():
       f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
       l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
@@ -199,13 +215,19 @@ def reinvestment_simple_rates(frame):
       t.append(ti)
       ii=float(interest.get())
       i.append(ii)
-      periods_var.set(periods_var.get()+"\n"+first_day.get_date()+" "+last_day.get_date()+" "+str(ii))
+      for r in range(len(t)):
+            label = Label(table, text=f_day.date(), bg="white", padx=3, pady=3)
+            label.grid(row=r+1, column=0, sticky="nsew")
+            label = Label(table, text=l_day.date(), bg="white", padx=3, pady=3)
+            label.grid(row=r+1, column=1, sticky="nsew")
+            label = Label(table, text=i[r], bg="white", padx=3, pady=3)
+            label.grid(row=r+1, column=2, sticky="nsew")
       
    def del_period():
       try:
-         datins=periods_var.get().split("\n")
-         del(datins[-1])
-         periods_var.set("\n".join(datins))
+         for lable in table.grid_slaves():
+            if int(lable.grid_info()["row"]) ==len(t):
+               lable.grid_forget()
          del(t[-1])
          del(i[-1])
       except:
@@ -216,8 +238,8 @@ def reinvestment_simple_rates(frame):
    del_period_btn=Button(input_frame,text="Видалити період",command=del_period)
    del_period_btn.grid(row=1,column=2)
    input_frame.pack(side=LEFT)
-   periods_label.pack(side=LEFT)
-   
+   table.pack(side=LEFT,anchor=N)
+
    res_var=StringVar(value="")
    res_label=Label(frame,textvariable=res_var)
    
@@ -273,10 +295,15 @@ def simple_rates_for_time_changing_sums(frame):
    capital=DoubleVar()
    capital_entry=Entry(input_frame, width = 15, textvariable = capital)
    capital_entry.grid(row=1,column=1)
-   periods_var=StringVar(value="")
-   periods_label=Label(frame,textvariable=periods_var)
    t=[]
    r=[]
+   table=Frame(frame)
+   label = Label(table, text="початок", bg="white", padx=3, pady=3)
+   label.grid(row=0, column=0, sticky="nsew")
+   label = Label(table, text="кінець", bg="white", padx=3, pady=3)
+   label.grid(row=0, column=1, sticky="nsew")
+   label = Label(table, text="Залишок", bg="white", padx=3, pady=3)
+   label.grid(row=0, column=2, sticky="nsew")
    def add_period():
       f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
       l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
@@ -284,13 +311,19 @@ def simple_rates_for_time_changing_sums(frame):
       t.append(ti)
       ri=float(capital.get())
       r.append(ri)
-      periods_var.set(periods_var.get()+"\n"+first_day.get_date()+" "+last_day.get_date()+" "+str(ri))
+      for rw in range(len(t)):
+            label = Label(table, text=f_day.date(), bg="white", padx=3, pady=3)
+            label.grid(row=rw+1, column=0, sticky="nsew")
+            label = Label(table, text=l_day.date(), bg="white", padx=3, pady=3)
+            label.grid(row=rw+1, column=1, sticky="nsew")
+            label = Label(table, text=r[rw], bg="white", padx=3, pady=3)
+            label.grid(row=rw+1, column=2, sticky="nsew")
       
    def del_period():
       try:
-         datins=periods_var.get().split("\n")
-         del(datins[-1])
-         periods_var.set("\n".join(datins))
+         for lable in table.grid_slaves():
+            if int(lable.grid_info()["row"]) ==len(t):
+               lable.grid_forget()
          del(t[-1])
          del(r[-1])
       except:
@@ -301,7 +334,7 @@ def simple_rates_for_time_changing_sums(frame):
    del_period_btn=Button(input_frame,text="Видалити період",command=del_period)
    del_period_btn.grid(row=1,column=2)
    input_frame.pack(side=LEFT)
-   periods_label.pack(side=LEFT)
+   table.pack(side=LEFT,anchor=N)
    
    res_var=StringVar(value="")
    res_label=Label(frame,textvariable=res_var)
