@@ -48,9 +48,18 @@ def chapter_two_task_one_page(frame):
     ivalue = DoubleVar()
 
     def calculate():
-        S = round(Pvalue.get() * ((1 + ivalue.get()) ** nvalue.get()), 4)
-        lblres = Label(frame, text="Нарощена сума (з відсотками) на кінець терміну S = {0}".format(S)).grid(
-            row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            if ivalue.get() > 1:
+                i.set(ivalue.get()/100)
+            else:
+                i.set(ivalue.get())
+            S = round(Pvalue.get() * ((1 + i.get()) ** nvalue.get()), 4)
+            lblres = Label(frame, text="Нарощена сума (з відсотками) на кінець терміну S = {0}".format(S)).grid(
+                row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        except TclError:
+            lblres = Label(frame, text="Введіть коректні параметри").grid(
+                row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Початкова величина боргу P").grid(row=1, column=2, padx=0, pady=1, sticky='w')
     input1 = Entry(frame, textvariable=Pvalue).grid(row=1, column=3, padx=0, pady=1, sticky='w')
