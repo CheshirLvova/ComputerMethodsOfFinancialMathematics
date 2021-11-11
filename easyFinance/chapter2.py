@@ -57,7 +57,7 @@ def chapter_two_task_one_page(frame):
             S = round(fabs(Pvalue.get()) * ((1 + i.get()) ** fabs(nvalue.get())), 4)
             lblres = Label(frame, text="Нарощена сума (з відсотками) на кінець терміну S = {0}".format(S)).grid(
                 row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
-        except TclError:
+        except (TclError, ZeroDivisionError):
             lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
                                        \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
                                        \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
@@ -111,7 +111,7 @@ def chapter_two_task_two_page(frame):
             I = round((fabs(Pvalue.get()) * ((1 + i.get()) ** fabs(nvalue.get()))) - fabs(Pvalue.get()), 4)
             lblres = Label(frame, text="Проценти за весь період нарощення за складними відсотками I = {0}".
                            format(I)).grid(row=6, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
-        except TclError:
+        except (TclError, ZeroDivisionError):
             lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
                                        \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
                                        \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
@@ -172,7 +172,7 @@ def chapter_two_task_three_page(frame):
             S = round(fabs(Pvalue.get()) * ((1 + (i.get() / fabs(mvalue.get()))) ** (fabs(mvalue.get()) - fabs(nvalue.get()))), 4)
             lblres = Label(frame, text="Нарощена сума  за номінальною ставкою {0} % на кінець терміну S = {1}".format(
                 i.get(), S)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
-        except TclError:
+        except (TclError, ZeroDivisionError):
             lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
                                        \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
                                        \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
@@ -237,7 +237,7 @@ def chapter_two_task_four_page(frame):
             j = round(fabs(mvalue.get()) * ((1 + i) ** (1 / fabs(mvalue.get())) - 1), 4)
             lblres = Label(frame, text="Величина номінальної ставки {0} = {1}%".format(
                 jv.get(), j)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
-        except TclError:
+        except (TclError, ZeroDivisionError):
             lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
                                        \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
                                        \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
@@ -300,7 +300,7 @@ def chapter_two_task_five_page(frame):
             j = round(fabs(mvalue.get()) * ((1 + i) ** (1 / fabs(mvalue.get())) - 1), 4)
             lblres = Label(frame, text="Величина номінальної ставки {0} = {1}%".format(
                 jv.get(), j)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
-        except TclError:
+        except (TclError, ZeroDivisionError):
             lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
                                        \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
                                        \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
@@ -356,7 +356,7 @@ def chapter_two_task_six_page(frame):
             P = round((fabs(Svalue.get()) / ((1 + i.get()) ** fabs(nvalue.get()))), 4)
             lblres = Label(frame, text="Дисконт суми {0} = {1}%".format(
                 fabs(Svalue.get()), P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
-        except TclError:
+        except (TclError, ZeroDivisionError):
             lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
                                        \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
                                        \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
@@ -411,7 +411,7 @@ def chapter_two_task_seven_page(frame):
             P = round((fabs(Svalue.get()) / ((1 + i.get() / fabs(mvalue.get())) ** (fabs(nvalue.get()) * fabs(mvalue.get())))), 4)
             lblres = Label(frame, text="Дисконт суми {0} = {1} (D = S - P)".format(
                 fabs(Svalue.get()), fabs(Svalue.get()) - P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
-        except TclError:
+        except (TclError, ZeroDivisionError):
             lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
                                        \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
                                        \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
@@ -469,7 +469,7 @@ def chapter_two_task_eight_page(frame):
             P = round(fabs(Svalue.get()) * ((1 - i.get()) ** fabs(nvalue.get())), 4)
             lblres = Label(frame, text="сучасна (теперішня) сума боргу = {0}".format(
                 P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
-        except TclError:
+        except (TclError, ZeroDivisionError):
             lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
                                        \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
                                        \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
@@ -525,7 +525,7 @@ def chapter_two_task_nine_page(frame):
             P = round(fabs(Svalue.get()) * ((1 - i.get() / fabs(mvalue.get())) ** (fabs(mvalue.get()) * fabs(nvalue.get()))), 4)
             lblres = Label(frame, text="сучасна (теперішня) сума боргу = {0}".format(
                 P)).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
-        except TclError:
+        except (TclError, ZeroDivisionError):
             lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
                                        \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
                                        \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
