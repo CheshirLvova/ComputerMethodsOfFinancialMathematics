@@ -455,7 +455,7 @@ i% річних. Визначити умовну втрату для креди�
                 g.set(fabs(gvalue.get()))
             ang_formula = ((one.get() - ((one.get() + g.get()) ** (-fabs(nvalue.get())))) / g.get())
             ani_formula = ((one.get() - ((one.get() + i.get()) ** (-fabs(nvalue.get())))) / i.get())
-            w = ani_formula / ang_formula
+            w = 1 - (ani_formula / ang_formula)
             W = round(w * fabs(Dvalue.get()), 3)
             lblres = Label(frame, text="Умовна втрата для кредитора W = {0} грн.".format(W)).grid(
                 row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
@@ -522,7 +522,7 @@ def chapter_seven_task_six_page(frame):
             Y = round((fabs(Dvalue.get()) * g.get() / fabs(mvalue.get()) * (
                     (one.get() + g.get() / fabs(mvalue.get())) ** (fabs(mvalue.get()) * fabs(nvalue.get())))) / (
                               ((one.get() + g.get() / fabs(mvalue.get())) ** (fabs(mvalue.get()) * fabs(nvalue.get()))) - 1), 3)
-            t = fabs(mvalue.get()) * (fabs(nvalue.get()) - fabs(tvalue.get()) - one.get()) - one.get()
+            t = fabs(mvalue.get()) * (fabs(tvalue.get()) - one.get()) - one.get()
             S = round(fabs(Dvalue.get()) * ((((one.get() + g.get() / fabs(mvalue.get())) ** (fabs(mvalue.get()) * fabs(nvalue.get()))) - (
                     (one.get() + g.get() / fabs(mvalue.get())) ** t)) / (
                                               (one.get() + g.get() / fabs(mvalue.get())) ** (
