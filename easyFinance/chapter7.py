@@ -45,11 +45,27 @@ def chapter_seven_task_one_page(frame):
     one.set(1.0)
 
     def calculate():
-        sni_formula = ((one.get() - ((one.get() + ivalue.get()) ** (-nvalue.get()))) / ivalue.get()) * (
-                (one.get() + ivalue.get()) ** nvalue.get())
-        Y = round(Dvalue.get() * gvalue.get() + (Dvalue.get() / sni_formula), 4)
-        lblres = Label(frame, text="Величина термінової виплати Y = {0} грн.".format(Y)).grid(
-            row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            g = DoubleVar()
+            if ivalue.get() > 1:
+                i.set(ivalue.get() / 100)
+            else:
+                i.set(fabs(ivalue.get()))
+            if gvalue.get() > 1:
+                g.set(gvalue.get() / 100)
+            else:
+                g.set(fabs(gvalue.get()))
+            sni_formula = ((one.get() - ((one.get() + i.get()) ** (-fabs(nvalue.get())))) / i.get()) * (
+                    (one.get() + i.get()) ** fabs(nvalue.get()))
+            Y = round(fabs(Dvalue.get()) * g.get() + (fabs(Dvalue.get()) / sni_formula), 4)
+            lblres = Label(frame, text="Величина термінової виплати Y = {0} грн.".format(Y)).grid(
+                row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except (TclError, ZeroDivisionError):
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Сума позики D").grid(row=0, column=2, padx=0, pady=1, sticky='w')
     input2 = Entry(frame, textvariable=Dvalue).grid(row=0, column=3, padx=0, pady=1, sticky='w')
@@ -74,11 +90,27 @@ def chapter_seven_task_one_page(frame):
     separator0 = ttk.Separator(frame).grid(column=2, row=6, columnspan=2, sticky='ns')
 
     def calculate1():
-        sni_formula = ((one.get() - ((one.get() + ivalue.get()) ** (-nvalue.get()))) / ivalue.get()) * (
-                (one.get() + ivalue.get()) ** nvalue.get())
-        Y = round((Dvalue.get() * ((one.get() + gvalue.get()) ** nvalue.get())) / sni_formula, 4)
-        lblres = Label(frame, text="Величина термінової виплати Y = {0} грн.".format(Y)).grid(
-            row=7, column=3, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            g = DoubleVar()
+            if ivalue.get() > 1:
+                i.set(ivalue.get() / 100)
+            else:
+                i.set(fabs(ivalue.get()))
+            if gvalue.get() > 1:
+                g.set(gvalue.get() / 100)
+            else:
+                g.set(fabs(gvalue.get()))
+            sni_formula = ((one.get() - ((one.get() + i.get()) ** (-fabs(nvalue.get())))) / i.get()) * (
+                    (one.get() + i.get()) ** fabs(nvalue.get()))
+            Y = round((fabs(Dvalue.get()) * ((one.get() + g.get()) ** fabs(nvalue.get()))) / sni_formula, 4)
+            lblres = Label(frame, text="Величина термінової виплати Y = {0} грн.".format(Y)).grid(
+                row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except (TclError, ZeroDivisionError):
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     bt2 = Button(frame, text='Обчислити', command=calculate1)
     bthint2 = Hovertip(bt2, '''Продовжимо попередній приклад, взявши до уваги, що
@@ -142,11 +174,27 @@ def chapter_seven_task_two_page(frame):
     separator0 = ttk.Separator(frame).grid(column=2, row=6, columnspan=2, sticky='ns')
 
     def calculate2():
-        sni_formula = ((one.get() - ((one.get() + ivalue.get()) ** (-nvalue.get()))) / ivalue.get()) * (
-                (one.get() + ivalue.get()) ** nvalue.get())
-        R = round(Dvalue.get() / sni_formula, 4)
-        lblres = Label(frame, text=" Pентa постнумерандо R = {0} грн.".format(R)).grid(
-            row=9, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            g = DoubleVar()
+            if ivalue.get() > 1:
+                i.set(ivalue.get() / 100)
+            else:
+                i.set(fabs(ivalue.get()))
+            if gvalue.get() > 1:
+                g.set(gvalue.get() / 100)
+            else:
+                g.set(fabs(gvalue.get()))
+            sni_formula = ((one.get() - ((one.get() + i.get()) ** (-fabs(nvalue.get())))) / i.get()) * (
+                    (one.get() + i.get()) ** fabs(nvalue.get()))
+            R = round(fabs(Dvalue.get()) / sni_formula, 4)
+            lblres = Label(frame, text=" Pентa постнумерандо R = {0} грн.".format(R)).grid(
+                row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except (TclError, ZeroDivisionError):
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     bt3 = Button(frame, text='Обчислити', command=calculate2)
     bthint3 = Hovertip(bt3, '''Клієнт взяв позику у  D грн. терміном на N років
@@ -201,36 +249,49 @@ def chapter_seven_task_three_page(frame):
     one.set(1.0)
 
     def calculate():
-        d = Dvalue.get() / nvalue.get()
-        lblres = Label(frame, text="Величина, що йде на погашення основного боргу d = {0} грн.".format(d)).grid(
-            row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
-        Title = ['Рік', 'Залишок боргу на початок року', 'Витрати за позикою', 'Виплати боргу', 'Проценти']
-        for row in range(8, int(nvalue.get()) + 9):
-            for col in range(2, 7):
-                if row == 8:
-                    label = Label(frame, text=Title[col - 2], bg="white", padx=3, pady=3)
-                    label.grid(row=row, column=col, sticky="nsew")
-                else:
-                    if col == 2:
-                        label = Label(frame, text=row - 8, bg="white", padx=3, pady=3)
-                        label.grid(row=row, column=col, sticky="nsew")
-                    elif col == 3:
-                        label = Label(frame, text="{0} грн".format(int(Dvalue.get() - (d * (row - 9)))), bg="white",
-                                      padx=3, pady=3)
-                        label.grid(row=row, column=col, sticky="nsew")
-                    elif col == 4:
-                        label = Label(frame, text=int(((Dvalue.get() - (d * (row - 9))) * 0.1) + d), bg="white", padx=3,
-                                      pady=3)
-                        label.grid(row=row, column=col, sticky="nsew")
-                    elif col == 5:
-                        label = Label(frame, text=int(d), bg="white", padx=3, pady=3)
-                        label.grid(row=row, column=col, sticky="nsew")
-                    if col == 6:
-                        label = Label(frame, text=int((Dvalue.get() - (d * (row - 9))) * 0.1), bg="white", padx=3,
-                                      pady=3)
+        try:
+            g = DoubleVar()
+            if gvalue.get() > 1:
+                g.set(gvalue.get() / 100)
+            else:
+                g.set(fabs(gvalue.get()))
+            d = Dvalue.get() / nvalue.get()
+            lblres = Label(frame, text="Величина, що йде на погашення основного боргу d = {0} грн.".format(d)).grid(
+                row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+            Title = ['Рік', 'Залишок боргу на початок року', 'Витрати за позикою', 'Виплати боргу', 'Проценти']
+            for row in range(8, int(nvalue.get()) + 9):
+                for col in range(2, 7):
+                    if row == 8:
+                        label = Label(frame, text=Title[col - 2], bg="white", padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     else:
-                        frame.grid_columnconfigure(col, weight=1)
+                        if col == 2:
+                            label = Label(frame, text=row - 8, bg="white", padx=3, pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        elif col == 3:
+                            label = Label(frame, text="{0} грн".format(int(Dvalue.get() - (d * (row - 9)))), bg="white",
+                                          padx=3, pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        elif col == 4:
+                            label = Label(frame, text=int(((Dvalue.get() - (d * (row - 9))) * 0.1) + d), bg="white",
+                                          padx=3,
+                                          pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        elif col == 5:
+                            label = Label(frame, text=int(d), bg="white", padx=3, pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        if col == 6:
+                            label = Label(frame, text=int((Dvalue.get() - (d * (row - 9))) * 0.1), bg="white", padx=3,
+                                          pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        else:
+                            frame.grid_columnconfigure(col, weight=1)
+        except (TclError, ZeroDivisionError):
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+
 
     lbl2 = Label(frame, text="Сума D").grid(row=0, column=2, padx=0, pady=1, sticky='w')
     input2 = Entry(frame, textvariable=Dvalue).grid(row=0, column=3, padx=0, pady=1, sticky='w')
@@ -283,47 +344,59 @@ def chapter_seven_task_four_page(frame):
     one.set(1.0)
 
     def calculate():
-        ani_formula = ((one.get() - ((one.get() + gvalue.get()) ** (-nvalue.get()))) / gvalue.get())
-        Y = round(Dvalue.get() / ani_formula, 4)
-        lblres = Label(frame, text="Величина, що йде на погашення основного боргу Y = {0} грн.".format(Y)).grid(
-            row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
-        Title = ['Рік', 'Залишок боргу на початок року', 'Термінові виплати', 'Проценти', 'Погашення основного боргу']
-        debt = [Y / ((1 + gvalue.get()) ** (nvalue.get() - i)) for i in range(int(nvalue.get() + 1))]
-        for row in range(8, int(nvalue.get() + 1) + 9):
-            for col in range(2, 7):
-                if row == 8:
-                    label = Label(frame, text=Title[col - 2], bg="white", padx=3, pady=3)
-                    label.grid(row=row, column=col, sticky="nsew")
-                elif row == int(nvalue.get() + 1) + 8 and (col == 3 or col == 4 or col == 5):
-                    label = Label(frame, text=0, bg="white", padx=3, pady=3)
-                    label.grid(row=row, column=col, sticky="nsew")
-                elif (row == 9) and col == 3:
-                    label = Label(frame, text="{0} грн".format(Dvalue.get()), bg="white", padx=3, pady=3)
-                    label.grid(row=row, column=col, sticky="nsew")
-                elif (row == int(nvalue.get() + 1) + 8) and col == 6:
-                    label = Label(frame, text="{0} грн".format(Dvalue.get()), bg="white", padx=3, pady=3)
-                    label.grid(row=row, column=col, sticky="nsew")
-                else:
-                    if col == 2:
-                        label = Label(frame, text=row - 8, bg="white", padx=3, pady=3)
+        try:
+            g = DoubleVar()
+            if gvalue.get() > 1:
+                g.set(gvalue.get() / 100)
+            else:
+                g.set(fabs(gvalue.get()))
+            ani_formula = ((one.get() - ((one.get() + g.get()) ** (-fabs(nvalue.get())))) / g.get())
+            Y = round(fabs(Dvalue.get()) / ani_formula, 4)
+            lblres = Label(frame, text="Величина, що йде на погашення основного боргу Y = {0} грн.".format(Y)).grid(
+                row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+            Title = ['Рік', 'Залишок боргу на початок року', 'Термінові виплати', 'Проценти',
+                     'Погашення основного боргу']
+            debt = [Y / ((1 + g.get()) ** (fabs(nvalue.get()) - i)) for i in range(int(fabs(nvalue.get()) + 1))]
+            for row in range(8, int(fabs(nvalue.get()) + 1) + 9):
+                for col in range(2, 7):
+                    if row == 8:
+                        label = Label(frame, text=Title[col - 2], bg="white", padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
-                    elif col == 3:
-                        label = Label(frame, text="{0} грн".format(Dvalue.get() - debt[row - 10]), bg="white",
-                                      padx=3, pady=3)
+                    elif row == int(fabs(nvalue.get()) + 1) + 8 and (col == 3 or col == 4 or col == 5):
+                        label = Label(frame, text=0, bg="white", padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
-                    elif col == 4:
-                        label = Label(frame, text=Y * 0.01, bg="white", padx=3, pady=3)
+                    elif (row == 9) and col == 3:
+                        label = Label(frame, text="{0} грн".format(fabs(Dvalue.get())), bg="white", padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
-                    elif col == 5:
-                        label = Label(frame, text=(Dvalue.get() - debt[row - 10]) * gvalue.get(), bg="white", padx=3,
-                                      pady=3)
-                        label.grid(row=row, column=col, sticky="nsew")
-                    if col == 6:
-                        label = Label(frame, text=debt[row - 9], bg="white", padx=3,
-                                      pady=3)
+                    elif (row == int(fabs(nvalue.get()) + 1) + 8) and col == 6:
+                        label = Label(frame, text="{0} грн".format(fabs(Dvalue.get())), bg="white", padx=3, pady=3)
                         label.grid(row=row, column=col, sticky="nsew")
                     else:
-                        frame.grid_columnconfigure(col, weight=1)
+                        if col == 2:
+                            label = Label(frame, text=row - 8, bg="white", padx=3, pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        elif col == 3:
+                            label = Label(frame, text="{0} грн".format(round(fabs(Dvalue.get()) - sum(debt[:row - 9]), 2)),
+                                          bg="white", padx=3, pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        elif col == 4:
+                            label = Label(frame, text=round(Y, 2), bg="white", padx=3, pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        elif col == 5:
+                            label = Label(frame, text=round((fabs(Dvalue.get()) - sum(debt[:row - 9])) * g.get(), 2),
+                                          bg="white", padx=3, pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        if col == 6:
+                            label = Label(frame, text=round(debt[row - 9], 2), bg="white", padx=3,
+                                          pady=3)
+                            label.grid(row=row, column=col, sticky="nsew")
+                        else:
+                            frame.grid_columnconfigure(col, weight=1)
+        except (TclError, ZeroDivisionError):
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Сума D").grid(row=0, column=2, padx=0, pady=1, sticky='w')
     input2 = Entry(frame, textvariable=Dvalue).grid(row=0, column=3, padx=0, pady=1, sticky='w')
@@ -369,12 +442,28 @@ i% річних. Визначити умовну втрату для креди�
     one.set(1.0)
 
     def calculate():
-        ang_formula = ((one.get() - ((one.get() + gvalue.get()) ** (-nvalue.get()))) / gvalue.get())
-        ani_formula = ((one.get() - ((one.get() + ivalue.get()) ** (-nvalue.get()))) / ivalue.get())
-        w = ani_formula / ang_formula
-        W = round(w * Dvalue.get(), 3)
-        lblres = Label(frame, text="Умовна втрата для кредитора W = {0} грн.".format(W)).grid(
-            row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            i = DoubleVar()
+            g = DoubleVar()
+            if ivalue.get() > 1:
+                i.set(ivalue.get() / 100)
+            else:
+                i.set(fabs(ivalue.get()))
+            if gvalue.get() > 1:
+                g.set(gvalue.get() / 100)
+            else:
+                g.set(fabs(gvalue.get()))
+            ang_formula = ((one.get() - ((one.get() + g.get()) ** (-fabs(nvalue.get())))) / g.get())
+            ani_formula = ((one.get() - ((one.get() + i.get()) ** (-fabs(nvalue.get())))) / i.get())
+            w = 1 - (ani_formula / ang_formula)
+            W = round(w * fabs(Dvalue.get()), 3)
+            lblres = Label(frame, text="Умовна втрата для кредитора W = {0} грн.".format(W)).grid(
+                row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except (TclError, ZeroDivisionError):
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Kредит D").grid(row=0, column=2, padx=0, pady=1, sticky='w')
     input2 = Entry(frame, textvariable=Dvalue).grid(row=0, column=3, padx=0, pady=1, sticky='w')
@@ -424,15 +513,29 @@ def chapter_seven_task_six_page(frame):
     one.set(1.0)
 
     def calculate():
-        Y = round((Dvalue.get() * gvalue.get() / mvalue.get() * (
-                    (one.get() + gvalue.get() / mvalue.get()) ** (mvalue.get() * nvalue.get()))) / (
-                              ((one.get() + gvalue.get() / mvalue.get()) ** (mvalue.get() * nvalue.get())) - 1), 3)
-        t = mvalue.get()*(nvalue.get()-tvalue.get()-one.get())-one.get()
-        S = round(Dvalue.get()*((((one.get() + gvalue.get() / mvalue.get()) ** (mvalue.get() * nvalue.get())) - ((one.get() + gvalue.get() / mvalue.get()) ** t)) / (
-                    (one.get() + gvalue.get() / mvalue.get()) ** (mvalue.get() * nvalue.get()) - 1)), 2)
-        lblres = Label(frame,
-                       text="Термінова виплата і величина несплаченого основного боргу S = {0} грн.".format(S)).grid(
-            row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
+        try:
+            g = DoubleVar()
+            if gvalue.get() > 1:
+                g.set(gvalue.get() / 100)
+            else:
+                g.set(fabs(gvalue.get()))
+            Y = round((fabs(Dvalue.get()) * g.get() / fabs(mvalue.get()) * (
+                    (one.get() + g.get() / fabs(mvalue.get())) ** (fabs(mvalue.get()) * fabs(nvalue.get())))) / (
+                              ((one.get() + g.get() / fabs(mvalue.get())) ** (fabs(mvalue.get()) * fabs(nvalue.get()))) - 1), 3)
+            t = fabs(mvalue.get()) * (fabs(tvalue.get()) - one.get()) - one.get()
+            S = round(fabs(Dvalue.get()) * ((((one.get() + g.get() / fabs(mvalue.get())) ** (fabs(mvalue.get()) * fabs(nvalue.get()))) - (
+                    (one.get() + g.get() / fabs(mvalue.get())) ** t)) / (
+                                              (one.get() + g.get() / fabs(mvalue.get())) ** (
+                                              fabs(mvalue.get()) * fabs(nvalue.get())) - 1)), 2)
+            lblres = Label(frame,
+                           text="Термінова виплата і величина несплаченого основного боргу S = {0} грн.".format(
+                               S)).grid(
+                row=7, column=2, columnspan=2, padx=0, pady=1, sticky='nsew')
+        except (TclError, ZeroDivisionError):
+            lblres = Label(frame, text="Введіть коректні параметри:\n - цілочислові дані, або числа з плаваючою комою \
+                                       \n - для введеня відсотків можна додавати цілочислове значення (від 0% до 100% \
+                                       \n   без знаку %, або ж значення в межах від 0 до 1 з плаваючою комою",
+                           justify=LEFT).grid(row=7, column=2, columnspan=2, padx=0, pady=1, sticky='w')
 
     lbl2 = Label(frame, text="Kредит D").grid(row=0, column=2, padx=0, pady=1, sticky='w')
     input2 = Entry(frame, textvariable=Dvalue).grid(row=0, column=3, padx=0, pady=1, sticky='w')
