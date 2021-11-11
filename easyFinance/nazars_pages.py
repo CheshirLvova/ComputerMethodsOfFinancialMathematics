@@ -104,6 +104,7 @@ def changing_simple_rates(frame):
    capital_entry.grid(row=1,column=1)
    t=[]
    i=[]
+   dates=[]
    table=Frame(frame)
    label = Label(table, text="початок", bg="white", padx=3, pady=3)
    label.grid(row=0, column=0, sticky="nsew")
@@ -113,24 +114,25 @@ def changing_simple_rates(frame):
    label.grid(row=0, column=2, sticky="nsew")
    def add_period():
       f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
+      fday=str(f_day.date())
       l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      lday=str(l_day.date())
+      dates.append((fday,lday))
       ti=int((l_day-f_day).days)
       t.append(ti)
       ii=float(interest.get())
       i.append(ii)
       for r in range(len(t)):
-            label = Label(table, text=f_day.date(), bg="white", padx=3, pady=3)
-            label.grid(row=r+1, column=0, sticky="nsew")
-            label = Label(table, text=l_day.date(), bg="white", padx=3, pady=3)
-            label.grid(row=r+1, column=1, sticky="nsew")
-            label = Label(table, text=i[r], bg="white", padx=3, pady=3)
-            label.grid(row=r+1, column=2, sticky="nsew")
+         Label(table, text=dates[r][0], bg="white", padx=3, pady=3).grid(row=r+1, column=0, sticky="nsew")
+         Label(table, text=dates[r][1], bg="white", padx=3, pady=3).grid(row=r+1, column=1, sticky="nsew")
+         Label(table, text=i[r], bg="white", padx=3, pady=3).grid(row=r+1, column=2, sticky="nsew")
       
    def del_period():
       try:
          for lable in table.grid_slaves():
             if int(lable.grid_info()["row"]) ==len(t):
                lable.grid_forget()
+         del(dates[-1])
          del(t[-1])
          del(i[-1])
       except:
@@ -201,6 +203,7 @@ def reinvestment_simple_rates(frame):
    capital_entry.grid(row=1,column=1)
    t=[]
    i=[]
+   dates=[]
    table=Frame(frame)
    label = Label(table, text="початок", bg="white", padx=3, pady=3)
    label.grid(row=0, column=0, sticky="nsew")
@@ -210,24 +213,25 @@ def reinvestment_simple_rates(frame):
    label.grid(row=0, column=2, sticky="nsew")
    def add_period():
       f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
+      fday=str(f_day.date())
       l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      lday=str(l_day.date())
+      dates.append((fday,lday))
       ti=int((l_day-f_day).days)
       t.append(ti)
       ii=float(interest.get())
       i.append(ii)
       for r in range(len(t)):
-            label = Label(table, text=f_day.date(), bg="white", padx=3, pady=3)
-            label.grid(row=r+1, column=0, sticky="nsew")
-            label = Label(table, text=l_day.date(), bg="white", padx=3, pady=3)
-            label.grid(row=r+1, column=1, sticky="nsew")
-            label = Label(table, text=i[r], bg="white", padx=3, pady=3)
-            label.grid(row=r+1, column=2, sticky="nsew")
+         Label(table, text=dates[r][0], bg="white", padx=3, pady=3).grid(row=r+1, column=0, sticky="nsew")
+         Label(table, text=dates[r][1], bg="white", padx=3, pady=3).grid(row=r+1, column=1, sticky="nsew")
+         Label(table, text=i[r], bg="white", padx=3, pady=3).grid(row=r+1, column=2, sticky="nsew")
       
    def del_period():
       try:
          for lable in table.grid_slaves():
             if int(lable.grid_info()["row"]) ==len(t):
                lable.grid_forget()
+         del(dates[-1])
          del(t[-1])
          del(i[-1])
       except:
@@ -297,6 +301,7 @@ def simple_rates_for_time_changing_sums(frame):
    capital_entry.grid(row=1,column=1)
    t=[]
    r=[]
+   dates=[]
    table=Frame(frame)
    label = Label(table, text="початок", bg="white", padx=3, pady=3)
    label.grid(row=0, column=0, sticky="nsew")
@@ -306,24 +311,25 @@ def simple_rates_for_time_changing_sums(frame):
    label.grid(row=0, column=2, sticky="nsew")
    def add_period():
       f_day=datetime.datetime.strptime(first_day.get_date(),"%d.%m.%y")
+      fday=str(f_day.date())
       l_day=datetime.datetime.strptime(last_day.get_date(),"%d.%m.%y")
+      lday=str(l_day.date())
+      dates.append((fday,lday))
       ti=int((l_day-f_day).days)
       t.append(ti)
       ri=float(capital.get())
       r.append(ri)
       for rw in range(len(t)):
-            label = Label(table, text=f_day.date(), bg="white", padx=3, pady=3)
-            label.grid(row=rw+1, column=0, sticky="nsew")
-            label = Label(table, text=l_day.date(), bg="white", padx=3, pady=3)
-            label.grid(row=rw+1, column=1, sticky="nsew")
-            label = Label(table, text=r[rw], bg="white", padx=3, pady=3)
-            label.grid(row=rw+1, column=2, sticky="nsew")
+         Label(table, text=(dates[rw][0]), bg="white", padx=3, pady=3).grid(row=r+1, column=0, sticky="nsew")
+         Label(table, text=(dates[rw][1]), bg="white", padx=3, pady=3).grid(row=r+1, column=1, sticky="nsew")
+         Label(table, text=r[rw], bg="white", padx=3, pady=3).grid(row=rw+1, column=2, sticky="nsew")
       
    def del_period():
       try:
          for lable in table.grid_slaves():
             if int(lable.grid_info()["row"]) ==len(t):
                lable.grid_forget()
+         del(dates[-1])
          del(t[-1])
          del(r[-1])
       except:
