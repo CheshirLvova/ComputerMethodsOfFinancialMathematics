@@ -6,6 +6,7 @@ import subprocess
 from datetime import date
 from pprint import pprint
 from numpy import *
+from math import fabs
 
 # підключення бібліотек для створення віконної програми
 from tkinter import *
